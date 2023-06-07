@@ -1,0 +1,39 @@
+{
+  "name": "hotelbooking",
+  "version": "1.0.0",
+  "description": "Node.js Restful CRUD API with (airports) ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+<<<<<<< HEAD
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.3.3",
+    "npmlog": "^7.0.1"
+  }
+=======
+  "keywords": [
+    "node.js",
+    "express",
+    "mysql",
+    "restapi"
+  ],
+  "author": "Ethan Motlag",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jquery": "^3.7.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.3.3",
+    "nocache": "^4.0.0",
+    "nodemon": "^2.0.22",
+    "npmlog": "^7.0.1"
+  },
+  "devDependencies": {}
+>>>>>>> d60453449955323457f17e2fbb4abf36b11b5666
+}
