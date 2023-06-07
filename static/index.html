@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+
+        var sortOrder = 'codes';
+        var currCode = false; // id of currently selected item, 0 if none
+
+        $(document).ready(function () {
+            $("#viewAddEditPane").hide();
+            // console.log("haha");
+            refreshTodoList();
+
+            $("#showAddItem").click(function () {
+                $("input[name=codes]").attr("disabled", false);
+                $("input[name=codes]").val("");
+                $("input[name=city]").val("");
+                $("input[name=latitude]").val("");
+                $("input[name=longtitude]").val("");
+                $("select[name=kind]").prop('checked', false);
+                $("#viewAddEditPane").show();
+                $("#saveOrAdd").html("Add airport");
+                // $("#currentId").html("");
+            });
+
+            $("#cancel").click(function () {
+                $("#viewAddEditPane").hide();
+            });
+
+
+            //delete
+            $("#delete").click(function () {
+                var codesVal = $("input[name=codes]").val();
+                $.ajax({ // FIXME: escape special characters using urlencode
+                    url: "/api/airports" + "/" + codesVal,
+                    type: "DELETE",
+                    dataType: "json",
+                    // data: airportObj,
+                    error: function (jqxhr, status, errorThrown) {
+                        alert("AJAX error: " + jqxhr.responseText);
+                    },
+                    success: function (jqxhr, status, errorThrown) {
+                        console.log(res.status);
+                        if (status)
+                            console.log(status);
+                    }
+                }).done(function () {
+                    // TODO: alerts are obsolete, instead use HTML z-layer popup that shows up for 2-3 seconds
+
+                    $("#viewAddEditPane").hide();
+                    refreshTodoList();
+                    currCode = false;
+                });
+            });
+
+            $("#saveOrAdd").click(function () { // add or update
+                var codesVal = $("input[name=codes]").val();
+                var cityVal = $("input[name=city]").val();
+                var latitudeVal = $("input[name=latitude]").val();
+                var longtitudeVal = $("input[name=longtitude]").val();
+                var kindVal = $("select[name=kind]").val();
+                // FIXME: verify values are valid
+                var airportObj = { codes: codesVal, city: cityVal, latitude: latitudeVal, longtitude: longtitudeVal, kind: kindVal };
+                $.ajax({ // FIXME: escape special characters using urlencode
+                    url: "/api/airports" + (!currCode ? "" : "/" + codesVal),
+                    type: currCode ? "PUT" : "POST",
+                    dataType: "json",
+                    data: airportObj,
+                    error: function (jqxhr, status, errorThrown) {
+                        alert("AJAX error: " + jqxhr.responseText);
+                    }
+                }).done(function () {
+                    // TODO: alerts are obsolete, instead use HTML z-layer popup that shows up for 2-3 seconds
+                    alert((!currCode ? "Added" : "Updated") + " successfully");
+                    $("#viewAddEditPane").hide();
+                    refreshTodoList();
+                    currCode = false;
+                }).fail(function () {
+                    console.log("error adding ");
+
+                });
+            });
+
+        });
+
+
+        function selectItem(codes) {
+            currCode = true;
+            // console.log("inside select item:" + codes);
+            $.ajax({
+                url: "/api/airports/" + codes,
+                type: "GET",
+                dataType: "json",
+                error: function (jqxhr, status, errorThrown) {
+                    alert("AJAX error: " + jqxhr.responseText);
+                }
+            }).done(function (airport) {
+                // console.log();
+                $("input[name=codes]").val(airport.codes);
+                $("input[name=codes]").attr("disabled", true);
+                $("input[name=city]").val(airport.city);
+                // FIXME: Server needs to be fixed to return YYYY-MM-DD only
+                // this is a temporary workaround
+                $("input[name=latitude]").val(airport.latitude);
+                $("input[name=longtitude]").val(airport.longtitude);
+                $("select[name=kind").val(airport.kind);
+                $("#saveOrAdd").html("Save changes");
+                $("#viewAddEditPane").show();
+                // FIXME: enable/disable Delete
+            });
+        }
+
+        function refreshTodoList() {
+            console.log("Refreshing with orderBy=" + sortOrder);
+            $.ajax({ // future: headers for authentication, url parameters for sorting, etc.
+                url: "/api/airports" + "?sortOrder=" + sortOrder,
+                type: "GET",
+                dataType: "json",
+                error: function (jqxhr, status, errorThrown) {
+                    alert("AJAX error: " + jqxhr.responseText);
+                }
+            }).done(function (airportList) {
+                console.log("inside done");
+                console.log("airport list: " + airportList);
+
+                var result = '<tr><th onclick="sortBy(\'codes\');" id="codesTh">#</th>'
+                    + '<th onclick="sortBy(\'city\');" id="cityTh" >City</th>'
+                    + '<th class="latitudeColumn" id="latitudeTh" onclick="sortBy(\'latitude\');">Latitude</th>'
+                    + '<th onclick="sortBy(\'longtitude\');" id="longtitudeTh">Longtitude</th>'
+                    + '<th onclick="sortBy(\'kind\');" id="kindTh">kind</th></tr>';
+                for (var i = 0; i < airportList.length; i++) {
+                    var airport = airportList[i];
+                    // result += '<tr onclick="selectItem(' + airport.codes + ')">';
+                    result += '<tr onclick="selectItem(\'' + airport.codes + '\')">';
+
+                    result += '<td>' + airport.codes + '</td>';
+                    result += '<td>' + airport.city + '</td>';
+                    result += '<td>' + airport.latitude + '</td>';
+                    result += '<td>' + airport.longtitude + '</td>';
+                    result += '<td>' + airport.kind + '</td>';
+                    result += '</tr>' + "\n";
+                }
+                $("#listTable").html(result);
+            });
+        }
+
+        function sortBy(order) {
+            console.log("sorting by " + order);
+            sortOrder = order;
+            // TODO: use IDs on TH to indicate sort order visually
+            refreshTodoList();
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <div id="centerContent">
+        <div id="listPane">
+            <button id="showAddItem">Add item</button>
+            <table id="listTable" border="1"></table>
+        </div>
+        <div id="viewAddEditPane">
+            Code: <input type="text" name="codes"><br>
+            City: <input type="text" name="city"><br>
+            Latitude: <input type="text" name="latitude"><br>
+            Longtitude: <input type="text" name="longtitude"><br>
+            Kind: <select name="kind" id="kindId">
+                <option value="Passenger">Passenger</option>
+                <option value="Cargo">Cargo</option>
+                <option value="Military">Military</option>
+                <option value="Private">Private</option>
+            </select><br>
+            <button id="saveOrAdd">Save or Add</button>
+            <button id="delete">Delete</button>
+            <button id="cancel">Cancel</button>
+        </div>
+    </div>
+</body>
+
+</html>
