@@ -12,7 +12,7 @@ const app = express();
 const logger = require("npmlog");
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://fsd08webservices.mysql.database.azure.com:8081"
 };
 app.use(nocache());
 // console.log("app path:"+app.path());
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to ToDoS application." });
 }); */
-require("./app/routes/airports.routes.js")(app);
+require("./app/routes/hotelbooking.routes.js")(app);
 
 app.use(express.static('static'));
 
