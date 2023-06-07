@@ -55,6 +55,7 @@
 2. What I plan to do from this scrum to next? (next 24 hours)
    - finish index.html
 3. Where do I need assistance? What do I need to figure out?
+   - I need to get familiar with Bootstrap to design our index.html
 
 <<2023-06-06 Qianfeng >>
 1. What I have done since last Scrum?
