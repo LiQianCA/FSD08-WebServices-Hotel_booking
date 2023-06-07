@@ -1,48 +1,72 @@
 <<2023-06-05 Li >>
-1. What I have done / not done since last Scrum?
-   Project propsal
+1. What I have done since last Scrum?
+   - wrote project propsal draft
+   - draw entity relationship diagram
+   - confirm project title
+   - search APIs
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - finish and submit proposal after the meeting with teacher
+   - create github repositories
+   - create database
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-05 Chang >>
-1. What I have done / not done since last Scrum?
+1. What I have done since last Scrum?
+   - finish Mockups
+   - search APIs
+   - revise proposal draft
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - prepare html
+   - setup github 
+   - setup database
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-05 Qianfeng >>
-1. What I have done / not done since last Scrum?
-- created project plan
-- API research
-- wrote proposal
+1. What I have done since last Scrum?
+   - created project plan
+   - API research
+   - wrote proposal draft
 2. What I plan to do from this scrum to next? (next 24 hours)
-- modify proposal
-- setup GitHub
-- setup database
-- start implement
+   - modify proposal
+   - setup GitHub
+   - setup database
+   - start implement
 3. Where do I need assistance? What do I need to figure out?
-- how to find useful APIs
+   - how to find useful APIs
 
 <<2023-06-06 Li >>
-1. What I have done / not done since last Scrum?
+1. What I have done since last Scrum?
+   - revised project proposal
+   - created github repositories
+   - created database
+   - created Trello boards
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - start implement backend
+   - submit the proposal
+   - create tables
+   - test connection
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-06 Chang >>
-1. What I have done / not done since last Scrum?
+1. What I have done since last Scrum?
+   - index.html draft
+   - setup github 
+   - setup database
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - finish index.html
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-06 Qianfeng >>
-1. What I have done / not done since last Scrum?
-- setup GitHub
-- setup database
-- start implement
-- proposal hasn't finished
+1. What I have done since last Scrum?
+   - setup GitHub
+   - setup database
+   - start implement
+   - revised proposal 
 2. What I plan to do from this scrum to next? (next 24 hours)
-- finish and submit the proposal
-- start implement
+   - finish and submit the proposal
+   - start implement
 3. Where do I need assistance? What do I need to figure out?
-- use of API and database
+   - use of API and database
 
 <<2023-06-07 Li >>
 1. What I have done / not done since last Scrum?
