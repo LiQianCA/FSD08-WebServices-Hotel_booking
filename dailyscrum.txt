@@ -70,19 +70,27 @@
    - use of API and database
 
 <<2023-06-07 Li >>
-1. What I have done / not done since last Scrum?
+1. What I have done since last Scrum?
+   -submitted proposal
+   - build structure of server
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - implement backend server
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-07 Chang >>
 1. What I have done / not done since last Scrum?
+   - index.html
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - login function
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-07 Qianfeng >>
 1. What I have done / not done since last Scrum?
+   - finished/submitted proposal
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - booking.html
 3. Where do I need assistance? What do I need to figure out?
+  - add login and register in the index page
 
 <<2023-06-08 Li >>
 1. What I have done / not done since last Scrum?
@@ -96,6 +104,7 @@
 
 <<2023-06-08 Qianfeng >>
 1. What I have done / not done since last Scrum?
+
 2. What I plan to do from this scrum to next? (next 24 hours)
 3. Where do I need assistance? What do I need to figure out?
 
