@@ -3,7 +3,7 @@ const express = require("express");
 const nocache = require('nocache');
 
 //cors provides Express middleware to enable CORS with various options.
-const cors = require("cors");
+//const cors = require("cors");
 
 //create an Express app
 const app = express();
@@ -11,12 +11,12 @@ const app = express();
 //logger npmlog
 const logger = require("npmlog");
 
-var corsOptions = {
-  origin: "http://hostname=fsd08webservices.mysql.database.azure.com:8081"
-};
+// var corsOptions = {
+//   origin: "http://hostname=fsd08webservices.mysql.database.azure.com:8081"
+// };
+
 app.use(nocache());
-// console.log("app path:"+app.path());
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -25,14 +25,10 @@ console.log("app path:"+app.path());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
-// app.get('/api/airports', (req, res) => {
-//   logger.warn('From Npmlog', 'Npmlog is simple too %j', {'message': 'test'});
-//   res.json({'message': 'Hello npmlog!'});
-// });
 
 /* // simple route
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to ToDoS application." });
+  res.json({ message: "Welcome to hotelbooking application." });
 }); */
 require("./app/routes/hotelbooking.routes.js")(app);
 
