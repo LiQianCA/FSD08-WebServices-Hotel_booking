@@ -25,7 +25,7 @@ Hotelroom.getAll = (sortBy, result) => {
 
 // Retrieve a single hotelroom by primary key (roomid)
 Hotelroom.findOne = (roomid, result) => {
-  const query = db.format("SELECT * FROM hotelroooms WHERE roomid = ?", [roomid]);
+  const query = db.format("SELECT * FROM hotelrooms WHERE roomid = ?", [roomid]);
   db.query(query, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -59,7 +59,7 @@ Airport.create = (newAirport, result) => {
 Hotelroom.update = (roomid, updateHotelroom, result) => {
   db.query(
     "UPDATE hotelrooms SET roomid = ?, roomtype = ?, pricepernight = ?, roomstatus = ? WHERE roomid = ?", 
-    [updatedHotelroom.roomtype, updatedHotelroom.pricepernight, updateHotelroom.roomstatus, roomid],  
+    [updatedHotelroom.roomtype, updatedHotelroom.pricepernight, updatedHotelroom.roomstatus, roomid],  
     (err, res) => {
       if (err) {
         console.log("error: ", err);
