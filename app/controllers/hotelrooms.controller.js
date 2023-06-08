@@ -31,9 +31,9 @@ exports.create = (req, res) => {
   };
  */
 
-// Retrieve all airports, sort by roomid
+// Retrieve all rooms sort by roomid
 exports.findAll = (req, res) => {
-  const sortBy = req.query.sortBy || 'roomid';
+  const sortBy = req.query.sortBy || 'RoomId';
   Hotelroom.getAll(sortBy, (err, hotelrooms) => {
     if (err) {
       res.status(500).send({
@@ -45,10 +45,10 @@ exports.findAll = (req, res) => {
   });
 };
 
-// Find a single hotelroom by primary key (roomid)
+// Find a single hotelroom by primary key (RoomId)
 exports.findOne = (req, res) => {
-  const roomid = req.params.roomid;
-  Hotelroom.findOne(roomid, (err, hotelroom) => {
+  const RoomId = req.params.RoomId;
+  Hotelroom.findOne(RoomId, (err, hotelroom) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -73,16 +73,16 @@ exports.findOne = (req, res) => {
 
 // Update a hotelroom by roomid
 exports.update = (req, res) => {
-  const roomid = req.params.roomid;
+  const RoomId = req.params.RoomId;
   const updatedHotelroom = {
-    roomtype: req.body.roomtype,
-    pricepernight: req.body.pricepernight,
-    roomstatus: req.body.roomstatus,
+    RoomType: req.body.RoomType,
+    PricePerNight: req.body.PricePerNight,
+    RoomStatus: req.body.RoomStatus,
    };
 
   // Validate the hotelroom data
 
-  Hotelroom.update(roomid, updatedHotelroom, (err, hotelroom) => {
+  Hotelroom.update(RoomId, updatedHotelroom, (err, hotelroom) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

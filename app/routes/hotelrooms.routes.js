@@ -9,10 +9,10 @@ module.exports = app => {
     router.get("/", hotelrooms.findAll);
   
     // Retrieve a single hotelrooms with roomid
-    router.get("/:id", hotelrooms.findOne);
+    router.get("/:RoomId", hotelrooms.findOne);
   
     // Update an airport with code
-    router.put("/:id", hotelrooms.update);
+    router.put("/:RoomId", hotelrooms.update);
   
     // Delete an airport with code
     //router.delete("/:code", airports.delete);

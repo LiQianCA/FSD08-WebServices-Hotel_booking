@@ -3,10 +3,10 @@ const db = require("./db.js");
 
 // Constructor
 const Hotelroom = function (hotelroom) {
-  this.roomid = hotelroom.roomid;               
-  this.roomtype = hotelroom.roomtype;
-  this.pricepernight = hotelroom.pricepernight;
-  this.roomstatus = hotelroom.status;
+  this.RoomId = hotelroom.RoomId;               
+  this.RoomType = hotelroom.RoomType;
+  this.PricePerNight = hotelroom.PricePerNight;
+  this.RoomStatus = hotelroom.RoomStatus;
   };
 
 // Retrieve all hotelrooms, sorted by hotelroom id
@@ -24,8 +24,8 @@ Hotelroom.getAll = (sortBy, result) => {
 };
 
 // Retrieve a single hotelroom by primary key (roomid)
-Hotelroom.findOne = (roomid, result) => {
-  const query = db.format("SELECT * FROM hotelrooms WHERE roomid = ?", [roomid]);
+Hotelroom.findOne = (RoomId, result) => {
+  const query = db.format("SELECT * FROM hotelrooms WHERE RoomId = ?", [RoomId]);
   db.query(query, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -56,10 +56,10 @@ Airport.create = (newAirport, result) => {
 };  */
 
 // Update a hotelroom by roomid
-Hotelroom.update = (roomid, updateHotelroom, result) => {
+Hotelroom.update = (RoomId, updatedHotelroom, result) => {
   db.query(
-    "UPDATE hotelrooms SET roomid = ?, roomtype = ?, pricepernight = ?, roomstatus = ? WHERE roomid = ?", 
-    [updatedHotelroom.roomtype, updatedHotelroom.pricepernight, updatedHotelroom.roomstatus, roomid],  
+    "UPDATE hotelrooms SET RoomId = ?, RoomType = ?, PricePerNight = ?, RoomStatus = ? WHERE RoomId = ?", 
+    [updatedHotelroom.RoomType, updatedHotelroom.PricePerNight, updatedHotelroom.RoomStatus, RoomId],  
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -72,8 +72,8 @@ Hotelroom.update = (roomid, updateHotelroom, result) => {
         return;
       }
 
-      console.log("updated hotelroom: ", { roomid: roomid, ...updatedHotelroom });
-      result(null, { roomid: roomid, ...updatedHotelroom });
+      console.log("updated hotelroom: ", { RoomId: RoomId, ...updatedHotelroom });
+      result(null, { RoomId: RoomId, ...updatedHotelroom });
     }
   );
 };
