@@ -94,20 +94,30 @@
 
 <<2023-06-08 Li >>
 1. What I have done / not done since last Scrum?
-  - 
+  - modified website 
+  - backend implement>> not finished yet 
 2. What I plan to do from this scrum to next? (next 24 hours)
+  - keep working on register/login function
 3. Where do I need assistance? What do I need to figure out?
+  - POST / GET Api test
 
 <<2023-06-08 Chang >>
 1. What I have done / not done since last Scrum?
+  - login.html
+  - set up register function >> not finished yet
 2. What I plan to do from this scrum to next? (next 24 hours)
+  - keep working on register/login function
 3. Where do I need assistance? What do I need to figure out?
+  - server connection error
 
 <<2023-06-08 Qianfeng >>
 1. What I have done / not done since last Scrum?
-
+  - room.html
+  - server connection >> not finished yet
 2. What I plan to do from this scrum to next? (next 24 hours)
+  - keep working on room/booking function
 3. Where do I need assistance? What do I need to figure out?
+  - send data package to server
 
 <<2023-06-09 Li >>
 1. What I have done / not done since last Scrum?
