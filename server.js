@@ -35,6 +35,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to ToDoS application." });
 }); */
 require("./app/routes/hotelbooking.routes.js")(app);
+require("./app/routes/hotelrooms.routes.js")(app);
 
 app.use(express.static('static'));
 
