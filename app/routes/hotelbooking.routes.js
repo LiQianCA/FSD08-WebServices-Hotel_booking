@@ -10,13 +10,7 @@ const bcrypt = require('bcrypt');
     router.post("/", user.create);
   
     // Retrieve all airports, sort by airport code
-  //GET /api/airports?sortBy=column where column is: code, city, kind
-  // router.get("/", user.findUser);
-  // router.get("/me", user.findMe);
     router.get("/", user.findMe);
-
-  
-
    
     // Retrieve a single airport by primary key (code)
     router.get("/:email", user.findOne);
