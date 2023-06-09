@@ -354,3 +354,13 @@ h1 {
  #login{
 	width:60px;
  }
+ /* added by chang */
+ #aid{
+	text-decoration: none;
+ }
+
+
+ #aid:link,#aid:visited,#aid:hover,#aid:active {
+ 	color: black;
+ 	text-decoration: none;
+ }

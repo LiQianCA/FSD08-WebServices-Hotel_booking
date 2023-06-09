@@ -27,7 +27,8 @@ UserClass.create = (newUser, result) => {
 
 
 //return one user by email
-UserClass.findByEmail = (UserEmail, result) => {
+UserClass.findByUserEmail = (UserEmail, result) => {
+  console.log("inside findbyuser email model："+UserEmail);
 
    db.query(`SELECT * FROM users WHERE UserEmail = "${UserEmail}"`, (err, res) => {
     if (err) {
@@ -37,7 +38,7 @@ UserClass.findByEmail = (UserEmail, result) => {
     }
 
     if (res.length) {
-      console.log("found airport: ", res[0]);
+      console.log("found user: ", res[0]);
       result(null, res[0]);
       return;
     }

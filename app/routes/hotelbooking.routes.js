@@ -3,7 +3,7 @@ module.exports = app => {
   
     var router = require("express").Router();
   // console.log("vscode");
-
+const bcrypt = require('bcrypt');
   // console.log(app.mountpath);
     // Create a new airport
   //POST /api/airports - create a record, code and city must not be in use, otherwise 209
@@ -11,8 +11,13 @@ module.exports = app => {
   
     // Retrieve all airports, sort by airport code
   //GET /api/airports?sortBy=column where column is: code, city, kind
-    router.get("/", user.findUser);
+  // router.get("/", user.findUser);
+  // router.get("/me", user.findMe);
+    router.get("/", user.findMe);
+
   
+
+   
     // Retrieve a single airport by primary key (code)
     router.get("/:email", user.findOne);
   

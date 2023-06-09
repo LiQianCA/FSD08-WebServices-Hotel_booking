@@ -1,5 +1,5 @@
 const UserClass = require("../models/hotelbooking.model");
-
+const Auth = require("../utils/auth");
 //Create and Save a new user
 exports.create = (req, res) => {
 
@@ -30,11 +30,20 @@ exports.create = (req, res) => {
 
 };
 
+
+exports.findMe = (req, res) => {
+    console.log("inside findme:"+req.dir);
+    Auth.execIfAuthValid(req, res, null, (req, res, user) => {
+        res.status(200).send(user);
+    });
+};
+
+
 // Retrieve all users from the database (with condition).
 exports.findUser = (req, res) => {
-    console.dir(req.body.params);
+    console.dir("inside controller finduser："+req.body.params);
    
-    RoomClass.findLoginUser(req, (err, data) => {
+    UserClass.findLoginUser(req, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
