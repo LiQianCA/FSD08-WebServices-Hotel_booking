@@ -14,6 +14,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <!-- slick -->
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+  <!-- <link rel="stylesheet" href="css/custom-color.css"> -->
+
   <link rel="stylesheet" href="style/main.css">
   <link rel="stylesheet" href="style/register.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
@@ -21,21 +26,16 @@
     $(document).ready(function () {
 
 
-      $("#btn").click(function () {
+      $("#btn").click(function () { // add or update
         var email = $("input[name=email]").val();
         var password = $("input[name=password]").val();
-        var password2 = $("input[name=repassword]").val();
         var fn = $("input[name=firstname]").val();
         var ln = $("input[name=lastname]").val();
         var addres = $("input[name=address]").val();
         var tel = $("input[name=telephone]").val();
-        if (password != password2) {
-          alert("Both passwords must be the same");
-          return;
-        }
+
         // FIXME: verify values are valid
         var user = { Role: "customer", UserEmail: email, UserAddress: addres, UserTel: tel, Password: password, FirstName: fn, LastName: ln, UserTier: "normal" };
-
         $.ajax({ // FIXME: escape special characters using urlencode
           url: "/api/users",
           type: "POST",
@@ -44,41 +44,14 @@
           error: function (jqxhr, status, errorThrown) {
             alert("AJAX error: " + jqxhr.responseText);
           }
-        }).done(function (userList) {
+        }).done(function () {
           // TODO: alerts are obsolete, instead use HTML z-layer popup that shows up for 2-3 seconds
-          alert(userList.UserEmail + " registered successfully. You may now login.");
-          window.location.assign("login.html");
+          alert("added  successfully");
 
         }).fail(function () {
           console.log("error adding ");
 
         });
-      });
-
-      const togglePassword = document.querySelector("#togglePassword");
-      const password = document.querySelector("#password");
-
-      togglePassword.addEventListener("click", function () {
-        // toggle the type attribute
-        const type =
-          password.getAttribute("type") === "password" ? "text" : "password";
-        password.setAttribute("type", type);
-
-        // toggle the icon
-        this.classList.toggle("bi-eye");
-      });
-
-      const retogglePassword = document.querySelector("#retogglePassword");
-      const repassword = document.querySelector("#repassword");
-
-      retogglePassword.addEventListener("click", function () {
-        // toggle the type attribute
-        const type =
-          repassword.getAttribute("type") === "password" ? "text" : "password";
-        repassword.setAttribute("type", type);
-
-        // toggle the icon
-        this.classList.toggle("bi-eye");
       });
 
     });
@@ -94,7 +67,10 @@
         </span>88
         LUX
         ST.,MONTRELA,QC</a>
-
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMainHeadertop"
+                aria-controls="navbarMainHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button> -->
       <div class="navbar-nav ms-auto">
         <select class="form-select languageselect" aria-label="Default select example" style="font-size:14px">
           <option selected>English</option>
@@ -109,7 +85,6 @@
           <option value="3">CNY</option>
         </select>
       </div>
-      <div><a id="aid" href="login.html">Log in</a></div>
     </div>
   </nav>
 
@@ -202,8 +177,6 @@
       <input type="text" name="telephone" id="telephone" placeholder="Telephone" />
       <input type="password" name="password" id="password" placeholder="Password" />
       <i class="bi bi-eye-slash" id="togglePassword"></i>
-      <input type="password" name="repassword" id="repassword" placeholder="Password Confirm" />
-      <i class="bi bi-eye-slash" id="retogglePassword"></i>
 
       <label id="keep" class="container">Keep me signed in
         <input type="checkbox" checked="checked" />
@@ -264,6 +237,10 @@
   <!-- jquery -->
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  <!-- slick -->
+  <script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+
 
 </body>
 
