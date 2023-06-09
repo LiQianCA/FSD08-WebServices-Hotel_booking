@@ -113,3 +113,6 @@ UserClass.remove = (email, result) => {
 
 
 module.exports = UserClass;
+
+
+  

@@ -3,7 +3,7 @@ const express = require("express");
 const nocache = require('nocache');
 
 //cors provides Express middleware to enable CORS with various options.
-const cors = require("cors");
+//const cors = require("cors");
 
 //create an Express app
 const app = express();
@@ -11,12 +11,12 @@ const app = express();
 //logger npmlog
 const logger = require("npmlog");
 
-var corsOptions = {
-  origin: "http://localhost:8081"
-};
+// var corsOptions = {
+//   origin: "http://localhost:8081"
+// };
 app.use(nocache());
 // console.log("app path:"+app.path());
-app.use(cors(corsOptions));
+//app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -35,6 +35,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to ToDoS application." });
 }); */
 require("./app/routes/hotelbooking.routes.js")(app);
+require("./app/routes/hotelrooms.routes.js")(app);
+require("./app/routes/hotelreserve.routes.js")(app);
 
 app.use(express.static('static'));
 
