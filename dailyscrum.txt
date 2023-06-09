@@ -121,17 +121,27 @@
 
 <<2023-06-09 Li >>
 1. What I have done / not done since last Scrum?
+  - finish hotelrooms  models/controller/website/routes
+  - basic login/registration function
 2. What I plan to do from this scrum to next? (next 24 hours)
+  - test and improve hotelrooms
+  - buildup userdata models/controller/website/routes
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-09 Chang >>
 1. What I have done / not done since last Scrum?
+   -finish basic login/registration function
 2. What I plan to do from this scrum to next? (next 24 hours)
+   -imporve login/registration fuction
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-09 Qianfeng >>
 1. What I have done / not done since last Scrum?
+   -useraccount.html buildup
+   -continue room/booking function
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - test useraccount.html
+   - continue room/booking function
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-10 Li >>
