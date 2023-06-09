@@ -99,7 +99,7 @@
              });
  
              $("#deleteButton").click(function () {
-                 if (confirm("Are you sure you want to delete this airport?")) {
+                 if (confirm("Are you sure you want to delete this user?")) {
                      delete(currId);
                  }
              });  
@@ -127,7 +127,7 @@
                  currId = userId;
                  $("#currentCode").html(user.userId);
                  $("input[name=userId]").val(user.userId);
-                 $("input[name=Role]").val(use.Role);
+                 $("input[name=Role]").val(user.Role);
                  $("input[name=FirstName]").val(user.FirstName);
                  $("input[name=LastName]").val(user.LastName);
                  $("input[name=UserEmail]").val(user.UserEmail);
