@@ -78,7 +78,14 @@
                     }
                 }
             }).done(function (userList) {
-                sign_div
+                if (userList.Role == "Admin") {
+                    console.log("admin");
+                    window.location.assign("hotelrooms.html");
+
+                } else {
+                    window.location.assign("rooms.html");
+
+                }
                 $("#sign_div").hide();
                 $("#mainAppPane").show();
                 $("#listPane").html("welcome " + userList.UserEmail);
