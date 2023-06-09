@@ -50,10 +50,11 @@ UserClass.findByUserEmail = (UserEmail, result) => {
 };
 
 // return all users
-UserClass.findByEmailBooking = (req,result) => {
-  console.log(req.body);
+UserClass.findByEmailBooking = (email,result) => {
+ 
+var query = db.format(`select * from bookings b join users u on b.userId=u.userId where u.UserEmail ="${email}"`);
 
-  var query = db.format(`SELECT * FROM bookings WHERE BookingId="1"`);
+  // var query = db.format(`SELECT * FROM bookings WHERE BookingId="1"`);
  
   db.query(query, (err, res) => {
     if (err) {
