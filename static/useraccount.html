@@ -20,13 +20,14 @@
     <link rel="stylesheet" href="style/main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <link rel="stylesheet" href="style/account.css">
-    
+
     <script>
         var sortBy = 'BookingId';
         var currId = '';
 
         $(document).ready(function () {
             // Existing code...
+            $("#loginUser").html(sessionStorage.getItem("email"));
 
             // New Booking functionality
             $("#newBooking").click(function () {
@@ -159,6 +160,7 @@
                     <option value="3">CNY</option>
                 </select>
             </div>
+            <div id="loginUser"></div>
         </div>
     </nav>
 
