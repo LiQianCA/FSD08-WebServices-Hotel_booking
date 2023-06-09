@@ -1,3 +1,4 @@
+
 module.exports = app => {
     const booking = require("../controllers/hotelreserve.controller.js");
     const router = require("express").Router();

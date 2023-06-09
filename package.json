@@ -26,5 +26,6 @@
     "nocache": "^4.0.0",
     "nodemon": "^2.0.22",
     "npmlog": "^7.0.1"
-  }
+  },
+  "devDependencies": {}
 }
