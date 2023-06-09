@@ -50,9 +50,9 @@ app.get('/api/bookings/:UserId', (req, res) => {
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to ToDoS application." });
 }); */
-require("./app/routes/hotelbooking.routes.js")(app);
-require("./app/routes/hotelrooms.routes.js")(app);
-require("./app/routes/hotelreserve.routes.js")(app);
+require("./app/routes/users.routes.js")(app);
+require("./app/routes/rooms.routes.js")(app);
+require("./app/routes/bookings.routes.js")(app);
 
 app.use(express.static('static'));
 

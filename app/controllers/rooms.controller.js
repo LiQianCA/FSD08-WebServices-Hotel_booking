@@ -1,4 +1,4 @@
-const Hotelroom = require("../models/hotelrooms.model.js");
+const Hotelroom = require("../models/rooms.model.js");
 
 /* Create a new airport
 

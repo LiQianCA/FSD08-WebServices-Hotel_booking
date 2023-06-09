@@ -1,4 +1,4 @@
-const UserClass = require("../models/hotelbooking.model");
+const UserClass = require("../models/users.model");
 const { createHash } = require('crypto');
 
 exports.hash = (string) => {

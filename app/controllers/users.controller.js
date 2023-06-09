@@ -1,4 +1,4 @@
-const UserClass = require("../models/hotelbooking.model");
+const UserClass = require("../models/users.model");
 const Auth = require("../utils/auth");
 //Create and Save a new user
 exports.create = (req, res) => {

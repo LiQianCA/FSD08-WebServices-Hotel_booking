@@ -1,5 +1,5 @@
 module.exports = app => {
-    const user = require("../controllers/hotelbooking.controller.js");
+    const user = require("../controllers/users.controller.js");
   
     var router = require("express").Router();
   // console.log("vscode");

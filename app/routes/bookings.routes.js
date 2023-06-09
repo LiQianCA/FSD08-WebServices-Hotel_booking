@@ -1,5 +1,5 @@
 module.exports = app => {
-    const booking = require("../controllers/hotelreserve.controller.js");
+    const booking = require("../controllers/bookings.controller.js");
     const router = require("express").Router();
 // Create a new booking
 router.post("/", booking.create);

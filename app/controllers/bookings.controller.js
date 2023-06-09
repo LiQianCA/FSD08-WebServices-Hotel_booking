@@ -1,4 +1,4 @@
-const BookingClass = require("../models/hotelreserve.model");
+const BookingClass = require("../models/bookings.model");
 
 // Create and save a new booking
 exports.create = (req, res) => {
