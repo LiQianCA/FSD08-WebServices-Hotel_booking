@@ -90,7 +90,7 @@
                         // Function to retrieve booking data based on user ID
                         function retrieveBookings(userId) {
                             $.ajax({
-                                url: "/api/bookings?UserId=" + UserId, // Replace with the appropriate API endpoint
+                                url: "/api/users?UserId=" + UserId, // Replace with the appropriate API endpoint
                                 type: "GET",
                                 dataType: "json",
                                 error: function (jqxhr, status, errorThrown) {
