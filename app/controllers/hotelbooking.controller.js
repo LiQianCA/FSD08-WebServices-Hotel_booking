@@ -56,7 +56,7 @@ exports.findUser = (req, res) => {
 //Find a single user by the email
 exports.findOne = (req, res) => {
     console.dir(req.body.params);
-    UserClass.findByEmail(req, (err, data) => {
+    UserClass.findByEmailBooking(req, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({

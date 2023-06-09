@@ -23,12 +23,13 @@
 
     <script>
         var sortBy = 'BookingId';
-        var currEmail = '';
-        retrieveBookings(currEmail);
+        var currEmail = sessionStorage.getItem("email");
+
 
         $(document).ready(function () {
             // Existing code...
             $("#loginUser").html(sessionStorage.getItem("email"));
+            retrieveBookings(currEmail);
 
             // New Booking functionality
             $("#newBooking").click(function () {
@@ -86,19 +87,20 @@
                 type: "GET",
                 dataType: "json",
                 error: function (jqxhr, status, errorThrown) {
-                    showModalPopup("AJAX error: " + jqxhr.responseText);
                 }
             }).done(function (bookings) {
                 var tableRows = "";
+                console.log(bookings);
 
                 for (var i = 0; i < bookings.length; i++) {
                     var booking = bookings[i];
+                    // console.log(booking);
                     tableRows += "<tr>";
-                    tableRows += "<td>" + booking.bookingId + "</td>";
-                    tableRows += "<td>" + booking.arrivalDate + "</td>";
-                    tableRows += "<td>" + booking.departureDate + "</td>";
-                    tableRows += "<td>" + booking.bookingBill + "</td>";
-                    tableRows += "<td>" + booking.paymentStatus + "</td>";
+                    tableRows += "<td>" + booking.BookingId + "</td>";
+                    tableRows += "<td>" + booking.CheckInDate + "</td>";
+                    tableRows += "<td>" + booking.CheckOutDate + "</td>";
+                    tableRows += "<td>" + booking.BookingBill + "</td>";
+                    tableRows += "<td>" + booking.PaymentStatus + "</td>";
                     tableRows += "</tr>";
                 }
 

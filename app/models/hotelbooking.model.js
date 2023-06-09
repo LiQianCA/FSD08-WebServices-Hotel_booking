@@ -50,10 +50,10 @@ UserClass.findByUserEmail = (UserEmail, result) => {
 };
 
 // return all users
-UserClass.findLoginUser = (req,result) => {
+UserClass.findByEmailBooking = (req,result) => {
   console.log(req.body);
 
-  var query = db.format("SELECT * FROM users WHERE UserEmail="+req.body.UserEmail+" AND Password="+req.body.Password);
+  var query = db.format(`SELECT * FROM bookings WHERE BookingId="1"`);
  
   db.query(query, (err, res) => {
     if (err) {
@@ -63,6 +63,7 @@ UserClass.findLoginUser = (req,result) => {
     }
   
     result(null, res);
+    console.log("inside model db.query"+res);
   });
 };
 
