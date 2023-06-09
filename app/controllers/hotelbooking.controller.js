@@ -10,7 +10,7 @@ exports.create = (req, res) => {
             LastName: req.body.LastName,
             UserTel: req.body.UserTel,
             UserAddress: req.body.UserAddress,
-            Password: req.body.Password,
+            Password: Auth.hash(req.body.Password),
             Role:req.body.Role
            
 
