@@ -23,7 +23,8 @@
 
     <script>
         var sortBy = 'BookingId';
-        var currId = '';
+        var currEmail = '';
+        retrieveBookings(currEmail);
 
         $(document).ready(function () {
             // Existing code...
@@ -34,101 +35,79 @@
                 $("#bookingForm").show();
             });
 
+
             $("#confirmBooking").click(function () {
                 var arrivalDate = $("#arrivalDate").val();
                 var departureDate = $("#departureDate").val();
                 var roomType = $("#roomType").val();
                 var numRooms = $("#numRooms").val();
 
-                // TODO: Perform data validation and handle the form submission
+                // Perform data validation
+                if (arrivalDate === '' || departureDate === '' || roomType === '' || numRooms === '') {
+                    alert('Please fill in all the fields');
+                    return;
+                }
+
                 // Post the data to the "bookings" table
-                $(document).ready(function () {
-                    // Existing code...
+                var bookingData = {
+                    arrivalDate: arrivalDate,
+                    departureDate: departureDate,
+                    roomType: roomType,
+                    numRooms: numRooms
+                };
 
-                    // New Booking functionality
-                    $("#newBooking").click(function () {
-                        $("#bookingForm").show();
-                    });
-
-                    $("#confirmBooking").click(function () {
-                        var arrivalDate = $("#arrivalDate").val();
-                        var departureDate = $("#departureDate").val();
-                        var roomType = $("#roomType").val();
-                        var numRooms = $("#numRooms").val();
-
-                        // Perform data validation
-                        if (arrivalDate === '' || departureDate === '' || roomType === '' || numRooms === '') {
-                            alert('Please fill in all the fields');
-                            return;
-                        }
-
-                        // Post the data to the "bookings" table
-                        var bookingData = {
-                            arrivalDate: arrivalDate,
-                            departureDate: departureDate,
-                            roomType: roomType,
-                            numRooms: numRooms
-                        };
-
-                        $.ajax({
-                            url: "/api/bookings",
-                            type: "POST",
-                            dataType: "json",
-                            data: bookingData,
-                            error: function (jqxhr, status, errorThrown) {
-                                showModalPopup("AJAX error: " + jqxhr.responseText);
-                            }
-                        }).done(function () {
-                            alert("Booking submitted successfully");
-                            $("#bookingForm").hide();
-                            // Optionally, you can refresh the "Your Order" table here
-                        });
-                    });
-
-                    $(document).ready(function () {
-
-                        // Function to retrieve booking data based on user ID
-                        function retrieveBookings(userId) {
-                            $.ajax({
-                                url: "/api/users?UserId=" + UserId, // Replace with the appropriate API endpoint
-                                type: "GET",
-                                dataType: "json",
-                                error: function (jqxhr, status, errorThrown) {
-                                    showModalPopup("AJAX error: " + jqxhr.responseText);
-                                }
-                            }).done(function (bookings) {
-                                var tableRows = "";
-
-                                for (var i = 0; i < bookings.length; i++) {
-                                    var booking = bookings[i];
-                                    tableRows += "<tr>";
-                                    tableRows += "<td>" + booking.bookingId + "</td>";
-                                    tableRows += "<td>" + booking.arrivalDate + "</td>";
-                                    tableRows += "<td>" + booking.departureDate + "</td>";
-                                    tableRows += "<td>" + booking.bookingBill + "</td>";
-                                    tableRows += "<td>" + booking.paymentStatus + "</td>";
-                                    tableRows += "</tr>";
-                                }
-
-                                $("#yourOrderTable").append(tableRows);
-                            });
-                        }
-
-                    });
-
-                    $("#cancelBooking").click(function () {
-                        $("#bookingForm").hide();
-                    });
+                $.ajax({
+                    url: "/api/bookings",
+                    type: "POST",
+                    dataType: "json",
+                    data: bookingData,
+                    error: function (jqxhr, status, errorThrown) {
+                        showModalPopup("AJAX error: " + jqxhr.responseText);
+                    }
+                }).done(function () {
+                    alert("Booking submitted successfully");
+                    $("#bookingForm").hide();
+                    // Optionally, you can refresh the "Your Order" table here
                 });
-
-                //  hide the form
-                $("#bookingForm").hide();
             });
+
+
+
 
             $("#cancelBooking").click(function () {
                 $("#bookingForm").hide();
             });
         });
+
+        // Function to retrieve booking data based on user ID
+        function retrieveBookings(email) {
+            $.ajax({
+                url: "/api/users/" + email, // Replace with the appropriate API endpoint
+                type: "GET",
+                dataType: "json",
+                error: function (jqxhr, status, errorThrown) {
+                    showModalPopup("AJAX error: " + jqxhr.responseText);
+                }
+            }).done(function (bookings) {
+                var tableRows = "";
+
+                for (var i = 0; i < bookings.length; i++) {
+                    var booking = bookings[i];
+                    tableRows += "<tr>";
+                    tableRows += "<td>" + booking.bookingId + "</td>";
+                    tableRows += "<td>" + booking.arrivalDate + "</td>";
+                    tableRows += "<td>" + booking.departureDate + "</td>";
+                    tableRows += "<td>" + booking.bookingBill + "</td>";
+                    tableRows += "<td>" + booking.paymentStatus + "</td>";
+                    tableRows += "</tr>";
+                }
+
+                $("#yourOrderTable").append(tableRows);
+            });
+        }
+
+
+
     </script>
 
 </head>
