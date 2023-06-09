@@ -57,7 +57,7 @@ Airport.create = (newAirport, result) => {
 // Update a hotelroom by roomid
 Hotelroom.update = (RoomId, updatedHotelroom, result) => {
   db.query(
-    "UPDATE hotelrooms RoomType = ?, PricePerNight = ?, RoomStatus = ? WHERE RoomId = ?", 
+    "UPDATE hotelrooms SET RoomType = ?, PricePerNight = ?, RoomStatus = ? WHERE RoomId = ?", 
     [updatedHotelroom.RoomType, updatedHotelroom.PricePerNight, updatedHotelroom.RoomStatus, RoomId],  
     (err, res) => {
       if (err) {
