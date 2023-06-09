@@ -25,6 +25,22 @@ console.log("app path:"+app.path());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+// API endpoint to retrieve booking details by user ID
+app.get('/api/bookings/:UserId', (req, res) => {
+  const userId = req.params.userId;
+  
+  // Query the database to retrieve booking details based on the user ID
+  const query = 'SELECT * FROM bookings WHERE UserId = ?';
+  connection.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error('Error retrieving bookings:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
 // app.get('/api/airports', (req, res) => {
 //   logger.warn('From Npmlog', 'Npmlog is simple too %j', {'message': 'test'});
 //   res.json({'message': 'Hello npmlog!'});
