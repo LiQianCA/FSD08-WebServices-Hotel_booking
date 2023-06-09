@@ -11,7 +11,7 @@ module.exports = app => {
     // Retrieve a single hotelrooms with roomid
     router.get("/:RoomId", hotelrooms.findOne);
   
-    // Update a hotelroom with roomid
+    // Update an airport with code
     router.put("/:RoomId", hotelrooms.update);
   
     // Delete an airport with code

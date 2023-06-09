@@ -1,4 +1,5 @@
 const db = require("./db.js");
+const { createHash } = require('crypto');
 
 // constructor
 const UserClass = function (user) {
