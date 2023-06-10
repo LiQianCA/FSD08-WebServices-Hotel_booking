@@ -93,9 +93,12 @@
                      showModalPopup(successMessage);
                      $("#viewAddEditPane").hide();
                      refreshHotelroomList();
-                     currId = '';
-                 });
-             });
+                     var searchRoomId = $("#searchRoomId").val();
+                     searchHotelroom(searchRoomId);
+                     currId = "";
+                                    
+                });
+            });
  
             /* $("#deleteButton").click(function () {
                  if (confirm("Are you sure you want to delete this airport?")) {
@@ -168,6 +171,9 @@
              sortBy = order;
              refreshHotelroomList();
          }
+
+       
+
          /*
          function deleteAirport(code) {
              $.ajax({
