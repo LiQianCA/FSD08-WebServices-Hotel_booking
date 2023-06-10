@@ -1,5 +1,4 @@
 const db = require("./db.js");
-const { createHash } = require('crypto');
 
 // constructor
 const UserClass = function (user) {
@@ -29,7 +28,7 @@ UserClass.create = (newUser, result) => {
 
 //return one user by email
 UserClass.findByUserEmail = (UserEmail, result) => {
-  console.log("inside findbyuser email model："+UserEmail);
+  console.log("inside findbyuser email model:"+UserEmail);
 
    db.query(`SELECT * FROM users WHERE UserEmail = "${UserEmail}"`, (err, res) => {
     if (err) {
@@ -52,8 +51,7 @@ UserClass.findByUserEmail = (UserEmail, result) => {
 // return all users
 UserClass.findByEmailBooking = (email,result) => {
  
-var query = db.format(`select * from bookings b join users u on b.userId=u.userId where u.UserEmail ="${email}"`);
-
+  var query = db.format(`select * from bookings b join users u on b.userId=u.userId where u.UserEmail ="${email}"`);
   // var query = db.format(`SELECT * FROM bookings WHERE BookingId="1"`);
  
   db.query(query, (err, res) => {
@@ -64,7 +62,7 @@ var query = db.format(`select * from bookings b join users u on b.userId=u.userI
     }
   
     result(null, res);
-    console.log("inside model db.query"+res);
+    // console.log("inside findbyEmailBooking model:"+res);
   });
 };
 
@@ -114,6 +112,28 @@ UserClass.remove = (email, result) => {
   });
 };
 
+UserClass.findAvaRooms = (chi,cho, result) => {
+  console.log("inside findavarooms model：" + chi + cho);
+  let queryava = db.format(`select * from hotelrooms where RoomId not in(select RoomId from bookings where (('${chi}'<CheckOutDate AND '${chi}'>CheckInDate) ||('${cho}'<CheckOutDate AND '${cho}'>CheckInDate) || ('${chi}'<CheckInDate AND '${cho}'>CheckOutDate)))`);
+  db.query(queryava, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+       console.log(res);
+       if (res.length) {
+         console.log(res.length);
+        // console.log("found user: ", res);
+      result(null, res);
+      return;
+       }
+       
+        result({ kind: "not_found" }, null);
+
+  
+  });
+};
 
 module.exports = UserClass;
 

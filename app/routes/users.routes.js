@@ -2,15 +2,11 @@ module.exports = app => {
     const user = require("../controllers/users.controller.js");
   
     var router = require("express").Router();
-  // console.log("vscode");
-const bcrypt = require('bcrypt');
-  // console.log(app.mountpath);
-    // Create a new airport
-  //POST /api/airports - create a record, code and city must not be in use, otherwise 209
+
     router.post("/", user.create);
   
     // Retrieve all airports, sort by airport code
-    router.get("/", user.findMe);
+    router.get("/", user.execIfAuthValid);
    
     // Retrieve a single airport by primary key (code)
     router.get("/:email", user.findOne);
@@ -22,4 +18,5 @@ const bcrypt = require('bcrypt');
     router.delete("/:codes", user.delete);
   
     app.use('/api/users', router);
+    app.use('/api/rooms', router);
   };
