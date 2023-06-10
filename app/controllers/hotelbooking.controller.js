@@ -55,7 +55,7 @@ exports.findUser = (req, res) => {
 
 //Find a single user by the email
 exports.findOne = (req, res) => {
-    console.dir(req.body.params);
+    console.dir("insdie find one controller");
     UserClass.findByEmailBooking(req.params.email, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
@@ -117,5 +117,39 @@ exports.delete = (req, res) => {
 function isValid(req, res) {
     return true;
     
+
+}
+
+//retrive rooms
+exports.execIfAuthValid = (req, res) => {
+    console.log("inside execifauth retrive rooms");
+    // console.log(JSON.stringify(req.headers)); // debugging only
+    if (req.headers['x-auth-checkin'] === undefined || req.headers['x-auth-checkout'] == undefined) {
+        console.log("no x-auth-* headers received");
+        res.status(403).send({
+            message: 'Authentication required but not provided'
+        });
+        return;
+    }
+    let chi = req.headers['x-auth-checkin'];
+    let cho = req.headers['x-auth-checkout'];
+    console.log(chi+cho);
+    UserClass.findAvaRooms(chi,cho, (err, user) => {
+        if (err) {
+            if (err.kind === "not_found") {
+                res.status(403).send({ // (*) identical reaction wheter user was not found or password was invalid or wrong role
+                    message: 'Authentication invalid'
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error retrieving rooms with checkindate " + chi
+                });
+            }
+        } else {
+            console.log('User found: ' + JSON.stringify(user));
+            res.status(200).send(user);
+
+        }
+    });
 
 }

@@ -22,9 +22,12 @@
     <link rel="stylesheet" href="style/account.css">
 
     <script>
-        var sortBy = 'BookingId';
+        var sortOrder = 'BookingId';
+        var currCheckOut = '';
+        var currCheckIn = '';
         var currEmail = sessionStorage.getItem("email");
-
+        var CheckInD = '';
+        var CheckOutD = '';
 
         $(document).ready(function () {
             // Existing code...
@@ -73,13 +76,79 @@
             });
 
 
+            $("#CheckAvailability").click(function () {
+                var CheckInD = $("#arrivalDate").val();
+                var CheckOutD = $("#departureDate").val();
 
+                $.ajax({
+                    url: "/api/rooms/", // Replace with the appropriate API endpoint
+                    type: "GET",
+                    headers: { 'x-auth-checkin': CheckInD, 'x-auth-checkout': CheckOutD },
+
+                    dataType: "json",
+                    error: function (jqxhr, status, errorThrown) {
+                    }
+                }).done(function (hotelroomList) {
+                    var tableRows = "";
+                    console.log("inside ajax check");
+                    var result = '<tr><th onclick="sortHotelroomBy(\'RoomId\');" id="RoomIdTh">RoomId</th>' +
+                        '<th onclick="sortHotelroomBy(\'RoomType\');" id="RoomTypeTh">RoomType</th>' +
+                        '<th onclick="sortHotelroomBy(\'PricePerNight\');" id="PricePerNightTh">PricePerNight</th>' +
+                        '<th onclick="sortHotelroomBy(\'RoomStatus\');" id="RoomStatusTh">RoomStatus</th>' +
+                        '</tr>';
+
+                    for (var i = 0; i < hotelroomList.length; i++) {
+                        var hotelroom = hotelroomList[i];
+                        result += '<tr onclick="selectHotelroom(\'' + hotelroom.RoomId + '\')">';
+                        result += '<td>' + hotelroom.RoomId + '</td>';
+                        result += '<td>' + hotelroom.RoomType + '</td>';
+                        result += '<td>' + hotelroom.PricePerNight + '</td>';
+                        result += '<td>' + hotelroom.RoomStatus + '</td>';
+                        result += '</tr>';
+                    }
+
+                    $("#listTable").html(result);
+                });
+
+            });
 
             $("#cancelBooking").click(function () {
                 $("#bookingForm").hide();
             });
         });
 
+
+        function retrieveRooms() {
+            console.log("Retrieve rooms" + sortOrder);
+            $.ajax({ // future: headers for authentication, url parameters for sorting, etc.
+                // url: "/api/users" + "?sortOrder=" + sortOrder,
+                url: "/api/users" + "?sortOrder=" + sortOrder,
+
+                headers: { 'x-auth-checkin': sessionStorage.getItem('email'), 'x-auth-password': sessionStorage.getItem('password') },
+                type: "GET",
+                dataType: "json",
+                error: function (jqxhr, status, errorThrown) {
+                    if (jqxhr.status == 403) {
+                        loginFailedHandler();
+                    } else {
+                        alert("AJAX error: " + jqxhr.responseText + ", status: " + jqxhr.status);
+                    }
+                }
+            }).done(function (userList) {
+                if (userList.Role == "Admin") {
+                    console.log("admin");
+                    window.location.assign("hotelrooms.html");
+
+                } else {
+                    window.location.assign("useraccount.html");
+
+                }
+                $("#sign_div").hide();
+                $("#mainAppPane").show();
+                $("#listPane").html("welcome " + userList.UserEmail);
+
+            });
+        }
         // Function to retrieve booking data based on user ID
         function retrieveBookings(email) {
             $.ajax({
@@ -260,10 +329,12 @@
             <label for="numRooms">Number of Rooms:</label>
             <input type="number" id="numRooms" name="numRooms" required><br>
 
-            <button type="button" id="confirmBooking">Confirm</button>
+            <button type="button" id="CheckAvailability">Check</button>
             <button type="button" id="cancelBooking">Cancel</button>
         </form>
     </div>
+
+    <table id="listTable" border="1"></table>
 
     <footer class="bg-secondary" id="footer">
         <div class="container">

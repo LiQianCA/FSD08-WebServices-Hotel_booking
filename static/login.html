@@ -65,7 +65,7 @@
             console.log("Refreshing with orderBy=" + sortOrder);
             $.ajax({ // future: headers for authentication, url parameters for sorting, etc.
                 // url: "/api/users" + "?sortOrder=" + sortOrder,
-                url: "/api/users" + "?sortOrder=" + sortOrder,
+                url: "/api/users/" + email,
 
                 headers: { 'x-auth-email': sessionStorage.getItem('email'), 'x-auth-password': sessionStorage.getItem('password') },
                 type: "GET",

@@ -45,7 +45,6 @@
             alert("AJAX error: " + jqxhr.responseText);
           }
         }).done(function (userList) {
-          // TODO: alerts are obsolete, instead use HTML z-layer popup that shows up for 2-3 seconds
           alert(userList.UserEmail + " registered successfully. You may now login.");
           window.location.assign("login.html");
 
@@ -55,28 +54,23 @@
         });
       });
 
+      //password eye
       const togglePassword = document.querySelector("#togglePassword");
       const password = document.querySelector("#password");
-
       togglePassword.addEventListener("click", function () {
         // toggle the type attribute
-        const type =
-          password.getAttribute("type") === "password" ? "text" : "password";
+        const type = password.getAttribute("type") === "password" ? "text" : "password";
         password.setAttribute("type", type);
-
         // toggle the icon
         this.classList.toggle("bi-eye");
       });
-
+      //repassword eye
       const retogglePassword = document.querySelector("#retogglePassword");
       const repassword = document.querySelector("#repassword");
-
       retogglePassword.addEventListener("click", function () {
         // toggle the type attribute
-        const type =
-          repassword.getAttribute("type") === "password" ? "text" : "password";
+        const type = repassword.getAttribute("type") === "password" ? "text" : "password";
         repassword.setAttribute("type", type);
-
         // toggle the icon
         this.classList.toggle("bi-eye");
       });
