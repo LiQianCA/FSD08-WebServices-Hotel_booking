@@ -54,6 +54,14 @@
   }
 
 
+  #sortButtons {
+    margin-top: 25px; /* Add margin to the bottom of the button container */
+  }
+
+  #sortButtons button {
+    margin-right: 85px; /* Add margin to the right of each button */
+    background-color:bisque;
+  }
 
 
 

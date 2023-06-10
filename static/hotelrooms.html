@@ -26,6 +26,21 @@
  
          $(document).ready(function () {
              $("#viewAddEditPane").hide();
+             $("#sortRoomId").click(function () {
+                    sortHotelroomBy('RoomId');
+                });
+
+                $("#sortRoomType").click(function () {
+                    sortHotelroomBy('RoomType');
+                });
+
+                $("#sortPrice").click(function () {
+                    sortHotelroomBy('PricePerNight');
+                });
+
+                $("#sortStatus").click(function () {
+                    sortHotelroomBy('RoomStatus');
+                });
              refreshHotelroomList();
  
              function showModalPopup(message) {
@@ -325,6 +340,13 @@
                 <button id="displayAll">Display All Hotel Rooms</button>
                 <input type="text" id="searchRoomId" placeholder="Search by RoomId">
                 <button id="search">Search</button>
+                <div id="sortButtons">
+                    <button id="sortRoomId">Sort by Room Id</button>
+                    <button id="sortRoomType">Sort by Room Type</button>
+                    <button id="sortPrice">Sort by Price Per Night</button>
+                    <button id="sortStatus">Sort by Room Status</button>
+                  </div>
+                  <br>
                 <table id="listTable" border="1"></table>
             </div>
             <div id="viewAddEditPane">
