@@ -33,3 +33,28 @@
     cursor: pointer;
   }
   
+
+/* adjust table layout , make it readable */
+  table {
+      width: 60%;
+  }
+
+  th,
+  td {
+      padding: 8px;
+      text-align: center;
+  }
+
+  /* Adjust the width of each column */
+  #RoomIdTh,
+  #RoomTypeTh,
+  #PricePerNightTh,
+  #RoomStatusTh {
+      width: 15%;
+  }
+
+
+
+
+
+

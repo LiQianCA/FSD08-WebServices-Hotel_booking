@@ -172,31 +172,38 @@
          }  */
  
          function searchHotelroom(RoomId) {
-             $.ajax({
-                 url: "/api/hotelrooms/" + RoomId,
-                 type: "GET",
-                 dataType: "json",
-                 error: function (jqxhr, status, errorThrown) {
-                     showModalPopup("AJAX error: " + jqxhr.responseText);
-                 }
-             }).done(function (hotelroom) {
-                 if (hotelroom) {
-                     var result = '<tr>';
-                     result += '<td>' + hotelroom.RoomId + '</td>';
-                     result += '<td>' + hotelroom.RoomType + '</td>';
-                     result += '<td>' + hotelroom.PricePerNight + '</td>';
-                     result += '<td>' + hotelroom.RoomStatus + '</td>';
-                     result += '</tr>';
- 
-                     // Clear the table body and append the result
-                     $("#listTable").html(result);
-                 } else {
-                     $("#listTable").html('<tr><td colspan="4">Hotelroom not found</td></tr>');
-                 }
-             });
-         }
- 
-     </script>
+            $.ajax({
+                url: "/api/hotelrooms/" + RoomId,
+                type: "GET",
+                dataType: "json",
+                error: function (jqxhr, status, errorThrown) {
+                    showModalPopup("AJAX error: " + jqxhr.responseText);
+                }
+            }).done(function (hotelroom) {
+                var result = '<tr><th onclick="sortHotelroomBy(\'RoomId\');" id="RoomIdTh">RoomId</th>' +
+                    '<th onclick="sortHotelroomBy(\'RoomType\');" id="RoomTypeTh">RoomType</th>' +
+                    '<th onclick="sortHotelroomBy(\'PricePerNight\');" id="PricePerNightTh">PricePerNight</th>' +
+                    '<th onclick="sortHotelroomBy(\'RoomStatus\');" id="RoomStatusTh">RoomStatus</th>' +
+                    '</tr>';
+
+                if (hotelroom) {
+                    result += '<tr>';
+                    result += '<td>' + hotelroom.RoomId + '</td>';
+                    result += '<td>' + hotelroom.RoomType + '</td>';
+                    result += '<td>' + hotelroom.PricePerNight + '</td>';
+                    result += '<td>' + hotelroom.RoomStatus + '</td>';
+                    result += '</tr>';
+                } else {
+                    result += '<tr><td colspan="4">Hotelroom not found</td></tr>';
+                }
+
+                // Update the table with the search result
+                $("#listTable").html(result);
+            });
+        }
+
+        
+            </script>
 </head>
 
 <body class="homepage">
