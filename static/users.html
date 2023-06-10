@@ -46,7 +46,7 @@
                 $("input[name=UserAddress]").val("");
                 $("input[name=UserTel]").val("");
                 $("input[name=UserTier]").val("");
-                $("input[name=Password]").val("");
+               // $("input[name=Password]").val("");
                 $("#viewAddEditPane").show();
                 $("#saveOrAdd").html("Add a user");
                 $("#currentCode").html("");
@@ -66,7 +66,7 @@
                 var UserAddressVal = $("input[name=UserAddress]").val();
                 var UserTelVal = $("input[name=UserTel]").val();
                 var UserTierVal = $("input[name=UserTier]").val();
-                var PasswordVal = $("input[name=Password]").val();
+                //var PasswordVal = $("input[name=Password]").val();
  
                  // FIXME: verify values are valid
                  var userObj = {
@@ -78,7 +78,7 @@
                      UserAddress: UserAddressVal,
                      UserTel: UserTelVal,
                      UserTier: UserTierVal,
-                     Password: PasswordVal
+                  //   Password: PasswordVal
                  };
  
                  $.ajax({ // FIXME: escape special characters using urlencode
@@ -134,7 +134,7 @@
                  $("input[name=UserAddress]").val(user.UserAddress);
                  $("input[name=UserTel]").val(user.UserTel);
                  $("input[name=UserTier]").val(user.UserTier);
-                 $("input[name=Password]").val(user.Password);
+               //  $("input[name=Password]").val(user.Password);
                  $("#saveOrAdd").html("Save Changes");
                  $("#delete").hide(); // hide  delete button when an user is selected
                  $("#viewAddEditPane").show();
@@ -158,7 +158,7 @@
                      '<th onclick="sortUserBy(\'UserAddress\');" id="UserAddressTh">UserAddress</th>' +
                      '<th onclick="sortUserBy(\'UserTel\');" id="UserTelTh">UserTel</th>' +
                      '<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
-                     '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
+                  //   '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
                      '</tr>';
  
                  for (var i = 0; i < userList.length; i++) {
@@ -172,7 +172,7 @@
                      result += '<td>' + user.UserAddress + '</td>';
                      result += '<td>' + user.UserTel + '</td>';
                      result += '<td>' + user.UserTier + '</td>';
-                     result += '<td>' + user.Password + '</td>';
+                 //    result += '<td>' + user.Password + '</td>';
                      result += '</tr>';
                  }
  
@@ -220,7 +220,7 @@
                      result += '<td>' + user.UserAddress + '</td>';
                      result += '<td>' + user.UserTel + '</td>';
                      result += '<td>' + user.UserTier + '</td>';
-                     result += '<td>' + user.Password + '</td>';
+                 //    result += '<td>' + user.Password + '</td>';
                      result += '</tr>';
  
                      // Clear the table body and append the result
@@ -363,7 +363,7 @@
                 UserAddress: <input type="text" name="UserAddress"><br>
                 UserTel: <input type="text" name="UserTel"><br>
                 UserTier: <input type="text" name="UserTier"><br>
-                Password: <input type="text" name="Password"><br>
+              <!--  Password: <input type="text" name="Password"><br> -->
                 <button id="saveOrAdd">Save or Add</button>
                 <button id="deleteButton">Delete</button>
                 <button id="cancel">Cancel</button>
