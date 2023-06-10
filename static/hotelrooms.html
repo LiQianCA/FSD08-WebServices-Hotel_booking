@@ -54,9 +54,11 @@
  
              $("#saveOrAdd").click(function () { // add or update
                  var RoomIdVal = $("input[name=RoomId]").val();
-                 var RoomTypeVal = $("input[name=RoomType]").val();
+                 var RoomTypeVal = $("#roomTypeSelect").val();
+                 // var RoomTypeVal = $("input[name=RoomType]").val();
                  var PricePerNightVal = $("input[name=PricePerNight]").val();
-                 var RoomStatusVal = $("input[name=RoomStatus]").val();
+                 //var RoomStatusVal = $("input[name=RoomStatus]").val();
+                 var RoomStatusVal = $("#roomStatusSelect").val();
  
                  // FIXME: verify values are valid
                  var hotelroomObj = {
@@ -116,7 +118,7 @@
                  $("input[name=PricePerNight]").val(hotelroom.PricePerNight);
                  $("input[name=RoomStatus]").val(hotelroom.RoomStatus);
                  $("#saveOrAdd").html("Save Changes");
-                 $("#delete").hide(); // hide  delete button when a hotelroom is selected
+                 //$("#delete").hide(); // hide  delete button when a hotelroom is selected
                  $("#viewAddEditPane").show();
              });
          }
@@ -187,7 +189,7 @@
                     '</tr>';
 
                 if (hotelroom) {
-                    result += '<tr>';
+                    result += '<tr onclick="selectHotelroom(\'' + hotelroom.RoomId + '\')">';
                     result += '<td>' + hotelroom.RoomId + '</td>';
                     result += '<td>' + hotelroom.RoomType + '</td>';
                     result += '<td>' + hotelroom.PricePerNight + '</td>';
@@ -197,13 +199,13 @@
                     result += '<tr><td colspan="4">Hotelroom not found</td></tr>';
                 }
 
-                // Update the table with the search result
-                $("#listTable").html(result);
-            });
-        }
+                    // Update the table with the search result
+                    $("#listTable").html(result);
+                });
+}
 
-        
-            </script>
+ 
+     </script>
 </head>
 
 <body class="homepage">
@@ -319,20 +321,31 @@
 
         <div id="centerContent">
             <div id="listPane">
-                <button id="showAddItem"> Show Update Form</button>
+                <!-- <button id="showAddItem"> Show Update Form</button>  -->
+                <button id="displayAll">Display All Hotel Rooms</button>
                 <input type="text" id="searchRoomId" placeholder="Search by RoomId">
                 <button id="search">Search</button>
-                <button id="displayAll">Display All Hotel Rooms</button>
                 <table id="listTable" border="1"></table>
             </div>
             <div id="viewAddEditPane">
                 Current Room: <span id="currentRoomId"></span><br>
                 RoomId: <input type="text" name="RoomId"><br>
-                RoomType: <input type="text" name="RoomType"><br>
+                RoomType: 
+                <select name="RoomType" id="roomTypeSelect">
+                    <option value="Single Bed Room">Single Bed Room</option>
+                    <option value="Double Beds Room">Double Beds Room</option>
+                    <option value="Suite Room">Suite Room</option>
+                    <option value="Executive Suite Room">Executive Suite Room</option>
+                </select><br>
                 PricePerNight: <input type="text" name="PricePerNight"><br>
-                RoomStatus: <input type="text" name="RoomStatus"><br>
+                RoomStatus:
+                <select name="RoomStatus" id="roomStatusSelect">
+                    <option value="Ready">Ready</option>
+                    <option value="Occupied">Occupied</option>
+                    <option value="Cleaning">Cleaning</option>
+                </select><br>
                 <button id="saveOrAdd">Save or Add</button>
-                <button id="deleteButton">Delete</button>
+                <!-- <button id="deleteButton">Delete</button> -->
                 <button id="cancel">Cancel</button>
             </div>
     
