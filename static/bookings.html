@@ -20,35 +20,35 @@
     <script>
         var sortBy = 'BookingId';
         var currId = '';
-
+    
         $(document).ready(function () {
             $("#viewAddEditPane").hide();
             $("#sortBookingId").click(function () {
                 sortBookingsBy('BookingId');
             });
-
+    
             $("#sortRoomId").click(function () {
                 sortBookingsBy('RoomId');
             });
-
+    
             $("#sortBookingStatus").click(function () {
                 sortBookingsBy('BookingStatus');
             });
-
+    
             $("#sortPaymentStatus").click(function () {
                 sortBookingsBy('PaymentStatus');
             });
             refreshBookingsList();
-
+    
             function showModalPopup(message) {
                 $("#modalMessage").text(message);
                 $("#myModal").css("display", "block");
             }
-
+    
             function hideModalPopup() {
                 $("#myModal").css("display", "none");
             }
-
+    
             $("#showAddItem").click(function () {
                 $("input[name=BookingId]").val("");
                 $("input[name=RoomId]").val("");
@@ -59,11 +59,11 @@
                 $("#currentCode").html("");
                 // $("#delete").hide(); // Hide delete button when adding a new booking
             });
-
+    
             $("#cancel").click(function () {
                 $("#viewAddEditPane").hide();
             });
-
+    
             $("#saveOrAdd").click(function () { // add or update
                 var BookingIdVal = $("input[name=BookingId]").val();
                 var UserIdVal = $("input[name=UserId]").val();
@@ -73,7 +73,7 @@
                 var BookingStatusVal = $("#bookingStatusSelect").val();
                 var BookingBillVal = $("input[name=BookingBill]").val();
                 var PaymentStatusVal = $("#paymentStatusSelect").val();
-
+    
                 // FIXME: verify values are valid
                 var bookingsObj = {
                     BookingId: BookingIdVal,
@@ -84,9 +84,8 @@
                     BookingStatus: BookingStatusVal,
                     BookingBill: BookingBillVal,
                     PaymentStatus: PaymentStatusVal,
-
                 };
-
+    
                 $.ajax({ // FIXME: escape special characters using urlencode
                     url: "/api/bookings" + (currId === '' ? '' : '/' + currId),
                     type: currId === '' ? 'POST' : 'PUT',
@@ -103,25 +102,25 @@
                     currId = '';
                 });
             });
-
+    
             $("#deleteButton").click(function () {
                 if (confirm("Are you sure you want to delete this booking?")) {
-                    deleteBooking(currCode);
+                    deleteBooking(currId);
                 }
             });
-
-
+    
+    
             $("#search").click(function () {
                 var searchBookingId = $("#searchBookingId").val();
-                searchBookings(searchBookingId);
+                searchBooking(searchBookingId);
             });
-
+    
             $("#displayAll").click(function () {
                 refreshBookingsList();
             });
         });
-
-        function selectBookings(BookingId) {
+    
+        function selectBooking(BookingId) {
             $.ajax({
                 url: "/api/bookings/" + BookingId,
                 type: "GET",
@@ -129,7 +128,7 @@
                 error: function (jqxhr, status, errorThrown) {
                     showModalPopup("AJAX error: " + jqxhr.responseText);
                 }
-            }).done(function (hotelroom) {
+            }).done(function (booking) {
                 currId = BookingId;
                 $("#currentCode").html(booking.BookingId);
                 $("input[name=BookingId]").val(booking.BookingId);
@@ -140,12 +139,12 @@
                 $("input[name=BookingStatus]").val(booking.BookingStatus);
                 $("input[name=PaymentStatus]").val(booking.PaymentStatus);
                 $("#saveOrAdd").html("Save Changes");
-                $("#delete").hide(); // hide  delete button when a booking is selected
+                $("#delete").hide(); // hide delete button when a booking is selected
                 $("#viewAddEditPane").show();
             });
         }
-
-        function refreshBookingList() {
+    
+        function refreshBookingsList() {
             $.ajax({
                 url: "/api/bookings?sortBy=" + sortBy,
                 type: "GET",
@@ -154,17 +153,17 @@
                     showModalPopup("AJAX error: " + jqxhr.responseText);
                 }
             }).done(function (bookingList) {
-
-                var result = '<tr><th onclick="sortBookingBy(\'BookingId\');" id="BookingIdTh">BookingId</th>' +
-                    '<th onclick="sortBookingBy(\'UserId\');" id="UserIdTh">UserId</th>' +
-                    '<th onclick="sortBookingBy(\'RoomId\');" id="RoomIdTh">RoomId</th>' +
-                    '<th onclick="sortBookingBy(\'CheckInDate\');" id="CheckInDateTh">CheckInDate</th>' +
-                    '<th onclick="sortBookingBy(\'CheckOutDate\');" id="CheckOutDateTh">CheckOutDate</th>' +
-                    '<th onclick="sortBookingBy(\'BookingStatus\');" id="BookingStatusTh">BookingStatus</th>' +
-                    '<th onclick="sortBookingBy(\'BookingBill\');" id="BookingBillTh">BookingBill</th>' +
-                    '<th onclick="sortBookingBy(\'PaymentStatus\');" id="PaymentStatusTh">PaymentStatus</th>' +
+    
+                var result = '<tr><th onclick="sortBookingsBy(\'BookingId\');" id="BookingIdTh">BookingId</th>' +
+                    '<th onclick="sortBookingsBy(\'UserId\');" id="UserIdTh">UserId</th>' +
+                    '<th onclick="sortBookingsBy(\'RoomId\');" id="RoomIdTh">RoomId</th>' +
+                    '<th onclick="sortBookingsBy(\'CheckInDate\');" id="CheckInDateTh">CheckInDate</th>' +
+                    '<th onclick="sortBookingsBy(\'CheckOutDate\');" id="CheckOutDateTh">CheckOutDate</th>' +
+                    '<th onclick="sortBookingsBy(\'BookingStatus\');" id="BookingStatusTh">BookingStatus</th>' +
+                    '<th onclick="sortBookingsBy(\'BookingBill\');" id="BookingBillTh">BookingBill</th>' +
+                    '<th onclick="sortBookingsBy(\'PaymentStatus\');" id="PaymentStatusTh">PaymentStatus</th>' +
                     '</tr>';
-
+    
                 for (var i = 0; i < bookingList.length; i++) {
                     var booking = bookingList[i];
                     result += '<tr onclick="selectBooking(\'' + booking.BookingId + '\')">';
@@ -178,16 +177,16 @@
                     result += '<td>' + booking.PaymentStatus + '</td>';
                     result += '</tr>';
                 }
-
+    
                 $("#listTable").html(result);
             });
         }
-
-        function sortbookingBy(order) {
+    
+        function sortBookingsBy(order) {
             sortBy = order;
-            refreshBookingList();
+            refreshBookingsList();
         }
-
+    
         function deleteBooking(code) {
             $.ajax({
                 url: "/api/bookings/" + code,
@@ -198,13 +197,13 @@
                 }
             }).done(function () {
                 showModalPopup("Booking deleted successfully");
-                refreshBookingList();
+                refreshBookingsList();
                 $("#viewAddEditPane").hide();
-                currCode = '';
+                currId = '';
             });
         }
-
-        function searchBooking(BookingId) {
+    
+        function searchBookings(BookingId) {
             $.ajax({
                 url: "/api/bookings/" + BookingId,
                 type: "GET",
@@ -213,16 +212,16 @@
                     showModalPopup("AJAX error: " + jqxhr.responseText);
                 }
             }).done(function (booking) {
-                var result = '<tr><th onclick="sortBookingBy(\'BookingId\');" id="BookingIdTh">BookingId</th>' +
-                    '<th onclick="sortBookingBy(\'UserId\');" id="UserIdTh">UserId</th>' +
-                    '<th onclick="sortBookingBy(\'RoomId\');" id="RoomIdTh">RoomId</th>' +
-                    '<th onclick="sortBookingBy(\'CheckInDate\');" id="CheckInDateTh">CheckInDate</th>' +
-                    '<th onclick="sortBookingBy(\'CheckOutDate\');" id="CheckOutDateTh">CheckOutDate</th>' +
-                    '<th onclick="sortBookingBy(\'BookingStatus\');" id="BookingStatusTh">BookingStatus</th>' +
-                    '<th onclick="sortBookingBy(\'BookingBill\');" id="BookingBillTh">BookingBill</th>' +
-                    '<th onclick="sortBookingBy(\'PaymentStatus\');" id="PaymentStatusTh">PaymentStatus</th>' +
+                var result = '<tr><th onclick="sortBookingsBy(\'BookingId\');" id="BookingIdTh">BookingId</th>' +
+                    '<th onclick="sortBookingsBy(\'UserId\');" id="UserIdTh">UserId</th>' +
+                    '<th onclick="sortBookingsBy(\'RoomId\');" id="RoomIdTh">RoomId</th>' +
+                    '<th onclick="sortBookingsBy(\'CheckInDate\');" id="CheckInDateTh">CheckInDate</th>' +
+                    '<th onclick="sortBookingsBy(\'CheckOutDate\');" id="CheckOutDateTh">CheckOutDate</th>' +
+                    '<th onclick="sortBookingsBy(\'BookingStatus\');" id="BookingStatusTh">BookingStatus</th>' +
+                    '<th onclick="sortBookingsBy(\'BookingBill\');" id="BookingBillTh">BookingBill</th>' +
+                    '<th onclick="sortBookingsBy(\'PaymentStatus\');" id="PaymentStatusTh">PaymentStatus</th>' +
                     '</tr>';
-
+    
                 if (booking) {
                     result += '<tr onclick="selectBooking(\'' + booking.BookingId + '\')">';
                     result += '<td>' + booking.BookingId + '</td>';
@@ -235,16 +234,14 @@
                     result += '<td>' + booking.PaymentStatus + '</td>';
                     result += '</tr>';
                 } else {
-                    result += '<tr><td colspan="4">Booking not found</td></tr>';
+                    result += '<tr><td colspan="8">Booking not found</td></tr>';
                 }
-
-                // Update the table with the search result
+    
                 $("#listTable").html(result);
             });
         }
-
-
     </script>
+    
 </head>
 
 <body class="homepage">

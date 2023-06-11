@@ -23,7 +23,7 @@ exports.create = (req, res) => {
         }
     });
 };
-
+/*
 // Retrieve all bookings from the database (with condition)
 exports.findBooking = (req, res) => {
     console.dir(req.body.params);
@@ -37,6 +37,21 @@ exports.findBooking = (req, res) => {
             res.status(200).send(data);
         }
     });
+};
+*/
+// Retrieve all bookings from the database (with condition)
+exports.findBooking = (req, res) => {
+  console.dir(req.body.params);
+
+  BookingClass.find(req, (err, data) => {
+    if (err) {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving bookings.",
+      });
+    } else {
+      res.status(200).send(data);
+    }
+  });
 };
 
 // Find a single booking by ID
