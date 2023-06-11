@@ -43,7 +43,7 @@ exports.findBooking = (req, res) => {
 exports.findBooking = (req, res) => {
   console.dir(req.body.params);
 
-  BookingClass.find(req, (err, data) => {
+  BookingClass.getAll(req.query.sortBy, (err, data) => {
     if (err) {
       res.status(500).send({
         message: err.message || "Some error occurred while retrieving bookings.",

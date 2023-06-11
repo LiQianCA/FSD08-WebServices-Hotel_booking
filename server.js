@@ -1,3 +1,4 @@
+
 //Express is for building the Rest apis
 const express = require("express");
 const nocache = require('nocache');
@@ -10,6 +11,9 @@ const app = express();
 
 //logger npmlog
 const logger = require("npmlog");
+const BookingClass = require("./app/models/bookings.model.js");
+
+const connection = require('./app/models/db.js');
 
 // var corsOptions = {
 //   origin: "http://localhost:8081"
@@ -27,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // API endpoint to retrieve booking details by user ID
 app.get('/api/bookings/:UserId', (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.params.UserId;
   
   // Query the database to retrieve booking details based on the user ID
   const query = 'SELECT * FROM bookings WHERE UserId = ?';
@@ -40,6 +44,7 @@ app.get('/api/bookings/:UserId', (req, res) => {
     }
   });
 });
+
 
 // app.get('/api/airports', (req, res) => {
 //   logger.warn('From Npmlog', 'Npmlog is simple too %j', {'message': 'test'});

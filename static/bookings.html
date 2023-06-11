@@ -38,7 +38,7 @@
             $("#sortPaymentStatus").click(function () {
                 sortBookingsBy('PaymentStatus');
             });
-            refreshBookingsList();
+            refreshBookingsList(sortBy);
     
             function showModalPopup(message) {
                 $("#modalMessage").text(message);
@@ -51,8 +51,12 @@
     
             $("#showAddItem").click(function () {
                 $("input[name=BookingId]").val("");
+                $("input[name=UserId]").val("");
                 $("input[name=RoomId]").val("");
+                $("input[name=CheckInDate]").val("");
+                $("input[name=CheckOutDate]").val("");
                 $("input[name=BookingStatus]").val("");
+                $("input[name=BookingBill]").val("");
                 $("input[name=PaymentStatus]").val("");
                 $("#viewAddEditPane").show();
                 $("#saveOrAdd").html("Add a booking");
@@ -112,7 +116,7 @@
     
             $("#search").click(function () {
                 var searchBookingId = $("#searchBookingId").val();
-                searchBooking(searchBookingId);
+                searchBookings(searchBookingId);
             });
     
             $("#displayAll").click(function () {
@@ -130,6 +134,7 @@
                 }
             }).done(function (booking) {
                 currId = BookingId;
+                $("#searchBookingId").val(booking.BookingId);
                 $("#currentCode").html(booking.BookingId);
                 $("input[name=BookingId]").val(booking.BookingId);
                 $("input[name=UserId]").val(booking.UserId);
@@ -137,6 +142,7 @@
                 $("input[name=CheckInDate]").val(booking.CheckInDate);
                 $("input[name=CheckOutDate]").val(booking.CheckOutDate);
                 $("input[name=BookingStatus]").val(booking.BookingStatus);
+                $("input[name=BookingBoll]").val(booking.BookingBill);
                 $("input[name=PaymentStatus]").val(booking.PaymentStatus);
                 $("#saveOrAdd").html("Save Changes");
                 $("#delete").hide(); // hide delete button when a booking is selected
