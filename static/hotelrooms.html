@@ -127,6 +127,7 @@
                  }
              }).done(function (hotelroom) {
                  currId = RoomId;
+                 $("#searchRoomId").val(hotelroom.RoomId);
                  $("#currentCode").html(hotelroom.RoomId);
                  $("input[name=RoomId]").val(hotelroom.RoomId);
                  $("input[name=RoomType]").val(hotelroom.RoomType);
