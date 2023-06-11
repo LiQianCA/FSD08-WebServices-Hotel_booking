@@ -13,6 +13,8 @@ const app = express();
 const logger = require("npmlog");
 const BookingClass = require("./app/models/bookings.model.js");
 
+const connection = require('./app/models/db.js');
+
 // var corsOptions = {
 //   origin: "http://localhost:8081"
 // };
