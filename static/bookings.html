@@ -126,7 +126,7 @@
     
         function selectBooking(BookingId) {
             $.ajax({
-                url: "/api/bookings?bookingId=" + BookingId,
+                url: "/api/bookings/" + BookingId,
                 type: "GET",
                 dataType: "json",
                 error: function (jqxhr, status, errorThrown) {
@@ -134,6 +134,7 @@
                 }
             }).done(function (booking) {
                 currId = BookingId;
+                $("#searchBookingId").val(booking.BookingId);
                 $("#currentCode").html(booking.BookingId);
                 $("input[name=BookingId]").val(booking.BookingId);
                 $("input[name=UserId]").val(booking.UserId);
