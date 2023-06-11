@@ -38,7 +38,7 @@
             $("#sortPaymentStatus").click(function () {
                 sortBookingsBy('PaymentStatus');
             });
-            refreshBookingsList();
+            refreshBookingsList(sortBy);
     
             function showModalPopup(message) {
                 $("#modalMessage").text(message);
