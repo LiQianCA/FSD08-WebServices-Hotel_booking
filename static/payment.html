@@ -134,63 +134,73 @@
         </div>
     </nav>
     <center>
-        <div class="col-sm-7">
-    
+        <div class="container">
             <div class="row">
-              <div class="col-sm-12">
+              <div class="col-sm-5">
+                <div class="room-info">
+                  <h3>Booking Information</h3>
+                  <img id="roomPic" src="" alt="Room Picture">
+                  <p id="roomType">Room Type: </p>
+                  <p id="pricePerNight">Price per Night: </p>
+                  <p>Check-in Date: <input type="date" id="checkInDate"></p>
+                  <p>Check-out Date: <input type="date" id="checkOutDate"></p>
+                  <p id="totalBill">Total Booking Bill: </p>
+                </div>
+              </div>
+              <div class="col-sm-7">
                 <div class="panel panel-default text-left">
                   <div class="panel-body">
-                    <h2> Payment Details </h2>
+                    <h2>Payment Details</h2>
                     <h3 contenteditable="true">Customer Information</h3>
-                    
                     <input type="text" placeholder="First Name" class="information"><br>
                     <input type="text" placeholder="Last Name" class="information"><br>
                     <input type="text" placeholder="Mobile Number" class="information"><br>
                     <input type="text" placeholder="Address" class="information"><br>
-                   
-                    
                   </div>
                 </div>
-              </div>
-            </div>
-            
-            <div class="row">
-              <div class="col-sm-3">
-                
-              </div>
-              <div class="col-sm-9" style="width: 100%;">
                 <div class="Abbott">
                   <h3 contenteditable="true">Customer Card Information</h3>
-                  <p> Payment information is only needed to hold your reservation.</p>
-                    <input type="text" placeholder="Name of card" class="information"><br>
-                    <input type="text" placeholder="Debit/Credit Card Number" class="information"><br>
-                  <div>  <input type="month" placeholder="Expire Date" class="informatio2">
-                    <input type="text" placeholder="Security Code" class="information1"><br></div>
+                  <p>Payment information is only needed to hold your reservation.</p>
+                  <input type="text" placeholder="Name of card" class="information"><br>
+                  <input type="text" placeholder="Debit/Credit Card Number" class="information"><br>
+                  <div>
+                    <input type="month" placeholder="Expire Date" class="information2">
+                    <input type="text" placeholder="Security Code" class="information1"><br>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-             
-              <div class="col-sm-6" style="width: 100%;">
                 <div class="Abbott">
-                 <h3>Important information</h3>
-                 <ul>
-                  <li>Cancellations or changes within 7 days beofre checkin date are subject to a fee equal to 50% of the total amount paid for the reservation.</li>
+                  <h3>Important information</h3>
+                  <ul>
+                    <li>Cancellations or changes within 7 days before check-in date are subject to a fee equal to 50% of the total amount paid for the reservation.</li>
                     <li>No-shows are subject to a fee equal to 100% of the total amount paid for the reservation.</li>
                     <li>We use secure transmission and encrypted storage to protect your personal information.</li>
-                </ul>
-                 <br>
-                 
-             
-                  
-                  
-                  
-                  
+                  </ul>
+                  <br>
                   <button id="complete">Complete Booking</button>
-                  
                 </div>
               </div>
             </div>
+          </div>
+          
+          <script>
+            // Function to update the room information
+            function updateRoomInformation(roomPic, roomType, pricePerNight, totalBill) {
+              $("#roomPic").attr("src", roomPic);
+              $("#roomType").text("Room Type: " + roomType);
+              $("#pricePerNight").text("Price per Night: " + pricePerNight);
+              $("#totalBill").text("Total Booking Bill: " + totalBill);
+            }
+          
+            // Get the room information from useraccount.html
+            var roomPic = ""; 
+            var roomType = ""; 
+            var pricePerNight = ""; 
+            var totalBill = ""; 
+          
+            // Call the function to update the room information
+            updateRoomInformation(roomPic, roomType, pricePerNight, totalBill);
+          </script>
+          
 
 
     </center>
