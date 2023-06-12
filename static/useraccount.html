@@ -234,6 +234,22 @@
 
         }
     </script>
+    <script>
+        function displayImage() {
+          var selectedOption = document.getElementById("roomType").value;
+          var imageElement = document.getElementById("roomImage");
+    
+          if (selectedOption === "single") {
+            imageElement.src = "images/single.png";
+          } else if (selectedOption === "double") {
+            imageElement.src = "images/double.png";
+          } else if (selectedOption === "suite") {
+            imageElement.src = "images/suite.png";
+          } else if (selectedOption === "executive") {
+            imageElement.src = "images/executive.png";
+          }
+        }
+      </script>
 
 </head>
 
@@ -379,7 +395,8 @@
                 <option value="double">Double Bed</option>
                 <option value="suite">Suite</option>
                 <option value="executive">Executive Suite</option>
-            </select><br>
+            </select>
+            <img id="roomImage" src="" width=300; alt="Room Image"><br>
 
             <label for="numRooms">Number of Rooms:</label>
             <input type="number" id="numRooms" name="numRooms" required><br>
