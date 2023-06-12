@@ -194,15 +194,21 @@
 
 <<2023-06-12 Li >>
 1. What I have done / not done since last Scrum?
+   - test and modify the webpage
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - final testing
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-12 Chang >>
 1. What I have done / not done since last Scrum?
-2. What I plan to do from this scrum to next? (next 24 hours)
+   - auth for admin and user
+2. What I plan to do from this scrum to next? (next 24 hours) 
+   - final testing
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-12 Qianfeng >>
 1. What I have done / not done since last Scrum?
+   - test and modify the webpage
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - final testing
 3. Where do I need assistance? What do I need to figure out?
