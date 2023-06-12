@@ -78,7 +78,12 @@
                 }).done(function () {
                     alert("Booking submitted successfully");
                     $("#bookingForm").hide();
-                    // Optionally, you can refresh the "Your Order" table here
+
+                    $(".room-info #arrivalDate").text("Arrival Date: " + arrivalDate);
+                    $(".room-info #departureDate").text("Departure Date: " + departureDate);
+                    $(".room-info #roomType").text("Room Type: " + roomType);
+                    $(".room-info #numRooms").text("Number of Rooms: " + numRooms);
+
                 });
             });
 
@@ -236,20 +241,20 @@
     </script>
     <script>
         function displayImage() {
-          var selectedOption = document.getElementById("roomType").value;
-          var imageElement = document.getElementById("roomImage");
-    
-          if (selectedOption === "single") {
-            imageElement.src = "images/single.png";
-          } else if (selectedOption === "double") {
-            imageElement.src = "images/double.png";
-          } else if (selectedOption === "suite") {
-            imageElement.src = "images/suite.png";
-          } else if (selectedOption === "executive") {
-            imageElement.src = "images/executive.png";
-          }
+            var selectedOption = document.getElementById("roomType").value;
+            var imageElement = document.getElementById("roomImage");
+
+            if (selectedOption === "single") {
+                imageElement.src = "images/single.png";
+            } else if (selectedOption === "double") {
+                imageElement.src = "images/double.png";
+            } else if (selectedOption === "suite") {
+                imageElement.src = "images/suite.png";
+            } else if (selectedOption === "executive") {
+                imageElement.src = "images/executive.png";
+            }
         }
-      </script>
+    </script>
 
 </head>
 
