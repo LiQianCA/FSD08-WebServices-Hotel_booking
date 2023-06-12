@@ -97,11 +97,12 @@
                 }).done(function () {
                      var successMessage = (searchBookingId === '') ? "Added successfully" : "Updated successfully";
                      showModalPopup(successMessage);
-                     $("#viewAddEditPane").hide();
+                     //$("#viewAddEditPane").hide();
                      refreshBookingsList();
                      searchBookingId = $("#searchBookingId").val();
                      searchBookings(searchBookingId);
                      searchBookingId = '';
+                     $("#viewAddEditPane").hide();
                     //refreshBookingsList();
                 });
             });
@@ -142,9 +143,9 @@
                     showModalPopup("AJAX error: " + jqxhr.responseText);
                 }
             }).done(function (booking) {
-                currId = BookingId;
+                searchBookingId = BookingId;
                 $("#searchBookingId").val(booking.BookingId);
-                $("#currentCode").html(booking.BookingId);
+                $("#searchBookingId").html(booking.BookingId);
                 $("input[name=BookingId]").val(booking.BookingId);
                 $("input[name=UserId]").val(booking.UserId);
                 $("input[name=RoomId]").val(booking.RoomId);
