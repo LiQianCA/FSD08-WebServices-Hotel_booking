@@ -95,20 +95,21 @@
                         showModalPopup("AJAX error: " + jqxhr.responseText);
                     }
                 }).done(function () {
-                    // var successMessage = (currId === '') ? "Added successfully" : "Updated successfully";
-                    // showModalPopup(successMessage);
-                    // $("#viewAddEditPane").hide();
-                    // refreshBookingsList();
-                    // var searchBookingId = $("#searchBookingId").val;
-                    // searchBookings(searchBookingId);
-                    // currId = '';
-                    refreshBookingsList();
+                     var successMessage = (searchBookingId === '') ? "Added successfully" : "Updated successfully";
+                     showModalPopup(successMessage);
+                     //$("#viewAddEditPane").hide();
+                     refreshBookingsList();
+                     searchBookingId = $("#searchBookingId").val();
+                     searchBookings(searchBookingId);
+                     searchBookingId = '';
+                     $("#viewAddEditPane").hide();
+                    //refreshBookingsList();
                 });
             });
 
             $("#deleteButton").click(function () {
                 if (confirm("Are you sure you want to delete this booking?")) {
-                    deleteBooking(currId);
+                    deleteBooking(searchBookingId);
                 }
             });
 
@@ -142,9 +143,9 @@
                     showModalPopup("AJAX error: " + jqxhr.responseText);
                 }
             }).done(function (booking) {
-                currId = BookingId;
+                searchBookingId = BookingId;
                 $("#searchBookingId").val(booking.BookingId);
-                $("#currentCode").html(booking.BookingId);
+                $("#searchBookingId").html(booking.BookingId);
                 $("input[name=BookingId]").val(booking.BookingId);
                 $("input[name=UserId]").val(booking.UserId);
                 $("input[name=RoomId]").val(booking.RoomId);
@@ -259,7 +260,7 @@
                     $("input[name=BookingBill]").val(booking.BookingBill);
                     $("input[name=PaymentStatus]").val(booking.PaymentStatus);
                     $("#saveOrAdd").html("Save changes");
-                    $("#viewAddEditPane").show()
+                    $("#viewAddEditPane").hide()
                 } else {
                     result += '<tr><td colspan="8">Booking not found</td></tr>';
 
@@ -386,7 +387,7 @@
 
         <div id="centerContent">
             <div id="listPane">
-                <button id="showAddItem"> Show Update Form</button>
+              <!--  <button id="showAddItem"> Show Update Form</button>  -->
                 <button id="displayAll">Display All Bookings</button>
                 <input type="text" id="searchBookingId" placeholder="Search by BookingId">
                 <button id="search">Search</button>

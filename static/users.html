@@ -24,7 +24,6 @@
         var sortBy = 'userId';
         var currId = '';
 
-
         $(document).ready(function () {
             $("#viewAddEditPane").hide();
             $("#loginUser").html(sessionStorage.getItem("email"));
@@ -47,7 +46,7 @@
                 $("input[name=UserEmail]").val("");
                 $("input[name=UserAddress]").val("");
                 $("input[name=UserTel]").val("");
-                $("input[name=UserTier]").val("");
+                //$("input[name=UserTier]").val("");
                 // $("input[name=Password]").val("");
                 $("#viewAddEditPane").show();
                 $("#saveOrAdd").html("Add a user");
@@ -60,7 +59,6 @@
             });
 
             $("#saveOrAdd").click(function () { // add or update
-
                 var userIdVal = $("input[name=userId]").val();
                 var RoleVal = $("input[name=Role]").val();
                 var FirstNameVal = $("input[name=FirstName]").val();
@@ -68,7 +66,7 @@
                 var UserEmailVal = $("input[name=UserEmail]").val();
                 var UserAddressVal = $("input[name=UserAddress]").val();
                 var UserTelVal = $("input[name=UserTel]").val();
-                var UserTierVal = $("input[name=UserTier]").val();
+                //var UserTierVal = $("input[name=UserTier]").val();
                 //var PasswordVal = $("input[name=Password]").val();
 
                 // FIXME: verify values are valid
@@ -80,7 +78,7 @@
                     UserEmail: UserEmailVal,
                     UserAddress: UserAddressVal,
                     UserTel: UserTelVal,
-                    UserTier: UserTierVal,
+                   // UserTier: UserTierVal,
                     //   Password: PasswordVal
                 };
 
@@ -93,11 +91,13 @@
                         showModalPopup("AJAX error: " + jqxhr.responseText);
                     }
                 }).done(function () {
-                    console.log("search user id:" + currId);
                     var successMessage = (currId === '') ? "Added successfully" : "Updated successfully";
                     showModalPopup(successMessage);
-                    $("#viewAddEditPane").hide();
+                   // $("#viewAddEditPane").hide();
                     refreshUserList();
+                    searchuserId = $("#searchuserId").val();
+                    searchUser(searchuserId);
+                    $("#viewAddEditPane").show();
                     currId = '';
                 });
             });
@@ -110,8 +110,8 @@
 
 
             $("#search").click(function () {
-                currId = $("#searchuserId").val();
-                searchUser(currId);
+                var searchuserId = $("#searchuserId").val();
+                searchUser(searchuserId);
             });
 
             $("#displayAll").click(function () {
@@ -120,8 +120,7 @@
         });
 
         function selectUser(userId) {
-            currId = $("#searchuserId").val();
-
+            // currId =userId;
             $.ajax({
                 url: "/api/users/OneUser/" + userId,
                 type: "GET",
@@ -131,6 +130,7 @@
                 }
             }).done(function (user) {
                 currId = userId;
+                $("#searchuserId").val(user.userId);
                 $("#currentCode").html(user.userId);
                 $("input[name=userId]").val(user.userId);
                 $("input[name=Role]").val(user.Role);
@@ -139,7 +139,7 @@
                 $("input[name=UserEmail]").val(user.UserEmail);
                 $("input[name=UserAddress]").val(user.UserAddress);
                 $("input[name=UserTel]").val(user.UserTel);
-                $("input[name=UserTier]").val(user.UserTier);
+                //$("input[name=UserTier]").val(user.UserTier);
                 //  $("input[name=Password]").val(user.Password);
                 $("#saveOrAdd").html("Save Changes");
                 $("#delete").hide(); // hide  delete button when an user is selected
@@ -163,7 +163,7 @@
                     '<th onclick="sortUserBy(\'UserEmail\');" id="UserEmailTh">UserEmail</th>' +
                     '<th onclick="sortUserBy(\'UserAddress\');" id="UserAddressTh">UserAddress</th>' +
                     '<th onclick="sortUserBy(\'UserTel\');" id="UserTelTh">UserTel</th>' +
-                    '<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
+                    //'<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
                     //   '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
                     '</tr>';
 
@@ -177,7 +177,7 @@
                     result += '<td>' + user.UserEmail + '</td>';
                     result += '<td>' + user.UserAddress + '</td>';
                     result += '<td>' + user.UserTel + '</td>';
-                    result += '<td>' + user.UserTier + '</td>';
+                    //result += '<td>' + user.UserTier + '</td>';
                     //    result += '<td>' + user.Password + '</td>';
                     result += '</tr>';
                 }
@@ -208,8 +208,6 @@
         }
 
         function searchUser(userId) {
-
-            currId = userId;
             $.ajax({
                 url: "/api/users/OneUser/" + userId,
                 type: "GET",
@@ -219,7 +217,16 @@
                 }
             }).done(function (user) {
                 if (user) {
-                    var result = '<tr>';
+                    var result = '<tr><th onclick="sortUserBy(\'userId\');" id="userIdTh">userId</th>' +
+                    '<th onclick="sortUserBy(\'Role\');" id="RoleTh">Role</th>' +
+                    '<th onclick="sortUserBy(\'FirstName\');" id="FirstNameTh">FirstName</th>' +
+                    '<th onclick="sortUserBy(\'LastName\');" id="LastNameTh">LastName</th>' +
+                    '<th onclick="sortUserBy(\'UserEmail\');" id="UserEmailTh">UserEmail</th>' +
+                    '<th onclick="sortUserBy(\'UserAddress\');" id="UserAddressTh">UserAddress</th>' +
+                    '<th onclick="sortUserBy(\'UserTel\');" id="UserTelTh">UserTel</th>' +
+                    //'<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
+                    //   '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
+                    '</tr>';
                     result += '<td>' + user.userId + '</td>';
                     result += '<td>' + user.Role + '</td>';
                     result += '<td>' + user.FirstName + '</td>';
@@ -227,22 +234,9 @@
                     result += '<td>' + user.UserEmail + '</td>';
                     result += '<td>' + user.UserAddress + '</td>';
                     result += '<td>' + user.UserTel + '</td>';
-                    result += '<td>' + user.UserTier + '</td>';
+                    //result += '<td>' + user.UserTier + '</td>';
                     //    result += '<td>' + user.Password + '</td>';
                     result += '</tr>';
-
-                    $("#currentCode").html(user.userId);
-                    $("input[name=userId]").val(user.userId);
-                    $("input[name=Role]").val(user.Role);
-                    $("input[name=FirstName]").val(user.FirstName);
-                    $("input[name=LastName]").val(user.LastName);
-                    $("input[name=UserEmail]").val(user.UserEmail);
-                    $("input[name=UserAddress]").val(user.UserAddress);
-                    $("input[name=UserTel]").val(user.UserTel);
-                    $("input[name=UserTier]").val(user.UserTier);
-                    $("#saveOrAdd").html("Save changes");
-
-                    $("#viewAddEditPane").show();
 
                     // Clear the table body and append the result
                     $("#listTable").html(result);
@@ -369,10 +363,10 @@
 
         <div id="centerContent">
             <div id="listPane">
-                <button id="showAddItem"> Show Update Form</button>
+             <!--   <button id="showAddItem"> Show Update Form</button>   -->
+                <button id="displayAll">Display All Users</button>
                 <input type="text" id="searchuserId" placeholder="Search by userId">
                 <button id="search">Search</button>
-                <button id="displayAll">Display All Users</button>
                 <table id="listTable" border="1"></table>
             </div>
             <div id="viewAddEditPane">
@@ -384,7 +378,7 @@
                 UserEmail: <input type="text" name="UserEmail"><br>
                 UserAddress: <input type="text" name="UserAddress"><br>
                 UserTel: <input type="text" name="UserTel"><br>
-                UserTier: <input type="text" name="UserTier"><br>
+                <!--UserTier: <input type="text" name="UserTier"><br> -->
                 <!--  Password: <input type="text" name="Password"><br> -->
                 <button id="saveOrAdd">Save or Add</button>
                 <button id="deleteButton">Delete</button>

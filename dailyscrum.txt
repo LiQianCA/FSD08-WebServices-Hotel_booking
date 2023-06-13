@@ -146,45 +146,70 @@
 
 <<2023-06-10 Li >>
 1. What I have done / not done since last Scrum?
+   -hotelroom.html update
+   -build up user.html
+   -Mid Progress Demo
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - test user.html
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-10 Chang >>
 1. What I have done / not done since last Scrum?
+   - pass user account information to booking.html
+   - Mid Progress Demo
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - Registration / login validation
+   - change alert to modal
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-10 Qianfeng >>
 1. What I have done / not done since last Scrum?
+   - test useraccount.html
+   - continue room/booking function
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - buildup fuction that admin can access all booking information
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-11 Li >>
 1. What I have done / not done since last Scrum?
+   - test user.html
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - test and modify the webpage
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-11 Chang >>
 1. What I have done / not done since last Scrum?
+   - Registration / login validation
+   - change alert to modal
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - auth for admin and user
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-11 Qianfeng >>
 1. What I have done / not done since last Scrum?
+   - buildup fuction that admin can access all booking information
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - test and modify the webpage
 3. Where do I need assistance? What do I need to figure out?
+
 
 <<2023-06-12 Li >>
 1. What I have done / not done since last Scrum?
+   - test and modify the webpage
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - final testing
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-12 Chang >>
 1. What I have done / not done since last Scrum?
-2. What I plan to do from this scrum to next? (next 24 hours)
+   - auth for admin and user
+2. What I plan to do from this scrum to next? (next 24 hours) 
+   - final testing
 3. Where do I need assistance? What do I need to figure out?
 
 <<2023-06-12 Qianfeng >>
 1. What I have done / not done since last Scrum?
+   - test and modify the webpage
 2. What I plan to do from this scrum to next? (next 24 hours)
+   - final testing
 3. Where do I need assistance? What do I need to figure out?
