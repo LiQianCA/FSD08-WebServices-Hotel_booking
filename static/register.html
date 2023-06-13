@@ -32,14 +32,19 @@
 
 
         let pwPattern = /^.{8,16}$/;
-        if (password.match(pwPattern)) {
-          alert("passwords length should be between 8 and 16");
+        if (!password.match(pwPattern)) {
+          showModalPopup("passwords length should be between 8 and 16");
           return;
         }
         let emailpattern = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
         if (!email.match(emailpattern)) {
-          console.log("invalid email");
           showModalPopup("Invalid Email");
+          return;
+
+        }
+
+        if (password != password2) {
+          showModalPopup("Password should be the same");
           return;
 
         }
