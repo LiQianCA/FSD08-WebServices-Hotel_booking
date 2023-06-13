@@ -131,9 +131,6 @@
 
             });
 
-            $("#cancelBooking").click(function () {
-                $("#bookingForm").hide();
-            });
 
 
         });
@@ -191,11 +188,23 @@
                     tableRows += '<td>' + booking.CheckOutDate + '</td>';
                     tableRows += '<td>' + booking.BookingBill + '</td>';
                     tableRows += '<td>' + booking.PaymentStatus + '</td>';
-                    tableRows += '<td><button   class="btnBook" onclick="payNow(\'' + booking.BookingBill + '\')">Pay Now</button></td>';
+                    if (booking.PaymentStatus == "Unpaid") {
+
+                        tableRows += '<td><button   class="btnBook" onclick="cancelBooking(\'' + booking.BookingId + '\')">Cancel Now</button></td>';
+
+
+                    } else {
+                        tableRows += '<td><button   class="btnBook" onclick="payNow(\'' + booking.BookingBill + '\')">Pay Now</button></td>';
+
+
+                    }
+
                     tableRows += '</tr>';
+
                 }
 
                 $("#yourOrderTable").append(tableRows);
+
             });
         }
 
@@ -228,6 +237,26 @@
         }
 
 
+        function cancelBooking(cbookingId) {
+            $.ajax({
+                url: "/api/bookings/delete/" + cbookingId,
+                type: "DELETE",
+                dataType: "json",
+                error: function (jqxhr, status, errorThrown) {
+
+                    showModalPopup("AJAX error: " + jqxhr.responseText);
+                }
+            }).done(function () {
+                showModalPopup("User deleted successfully");
+                retrieveBookings(currEmail);
+                $("#viewAddEditPane").hide();
+                currCode = '';
+            });
+        }
+
+
+
+
         //get login user id
         function getUserId(e) {
             $.ajax({
@@ -255,6 +284,17 @@
             console.log("inside paynow");
             window.location.assign("payment.html");
 
+        }
+
+
+
+        function showModalPopup(message) {
+            $("#modalMessage").text(message);
+            $("#myModal").css("display", "block");
+        }
+
+        function hideModalPopup() {
+            $("#myModal").css("display", "none");
         }
     </script>
 
