@@ -189,12 +189,14 @@
                     tableRows += '<td>' + booking.BookingBill + '</td>';
                     tableRows += '<td>' + booking.PaymentStatus + '</td>';
                     if (booking.PaymentStatus == "Unpaid") {
+                        tableRows += '<td><button   class="btnBook" onclick="payNow(\'' + booking.BookingBill + '\')">Pay Now</button></td>';
 
-                        tableRows += '<td><button   class="btnBook" onclick="cancelBooking(\'' + booking.BookingId + '\')">Cancel Now</button></td>';
+
 
 
                     } else {
-                        tableRows += '<td><button   class="btnBook" onclick="payNow(\'' + booking.BookingBill + '\')">Pay Now</button></td>';
+                        tableRows += '<td><button   class="btnBook" onclick="cancelBooking(\'' + booking.BookingId + '\')">Cancel Now</button></td>';
+
 
 
                     }
