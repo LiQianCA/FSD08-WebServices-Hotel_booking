@@ -46,7 +46,7 @@
                 $("input[name=UserEmail]").val("");
                 $("input[name=UserAddress]").val("");
                 $("input[name=UserTel]").val("");
-                $("input[name=UserTier]").val("");
+                //$("input[name=UserTier]").val("");
                 // $("input[name=Password]").val("");
                 $("#viewAddEditPane").show();
                 $("#saveOrAdd").html("Add a user");
@@ -66,7 +66,7 @@
                 var UserEmailVal = $("input[name=UserEmail]").val();
                 var UserAddressVal = $("input[name=UserAddress]").val();
                 var UserTelVal = $("input[name=UserTel]").val();
-                var UserTierVal = $("input[name=UserTier]").val();
+                //var UserTierVal = $("input[name=UserTier]").val();
                 //var PasswordVal = $("input[name=Password]").val();
 
                 // FIXME: verify values are valid
@@ -78,7 +78,7 @@
                     UserEmail: UserEmailVal,
                     UserAddress: UserAddressVal,
                     UserTel: UserTelVal,
-                    UserTier: UserTierVal,
+                   // UserTier: UserTierVal,
                     //   Password: PasswordVal
                 };
 
@@ -97,7 +97,7 @@
                     refreshUserList();
                     searchuserId = $("#searchuserId").val();
                     searchUser(searchuserId);
-                    $("#viewAddEditPane").hide();
+                    $("#viewAddEditPane").show();
                     currId = '';
                 });
             });
@@ -139,7 +139,7 @@
                 $("input[name=UserEmail]").val(user.UserEmail);
                 $("input[name=UserAddress]").val(user.UserAddress);
                 $("input[name=UserTel]").val(user.UserTel);
-                $("input[name=UserTier]").val(user.UserTier);
+                //$("input[name=UserTier]").val(user.UserTier);
                 //  $("input[name=Password]").val(user.Password);
                 $("#saveOrAdd").html("Save Changes");
                 $("#delete").hide(); // hide  delete button when an user is selected
@@ -163,7 +163,7 @@
                     '<th onclick="sortUserBy(\'UserEmail\');" id="UserEmailTh">UserEmail</th>' +
                     '<th onclick="sortUserBy(\'UserAddress\');" id="UserAddressTh">UserAddress</th>' +
                     '<th onclick="sortUserBy(\'UserTel\');" id="UserTelTh">UserTel</th>' +
-                    '<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
+                    //'<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
                     //   '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
                     '</tr>';
 
@@ -177,7 +177,7 @@
                     result += '<td>' + user.UserEmail + '</td>';
                     result += '<td>' + user.UserAddress + '</td>';
                     result += '<td>' + user.UserTel + '</td>';
-                    result += '<td>' + user.UserTier + '</td>';
+                    //result += '<td>' + user.UserTier + '</td>';
                     //    result += '<td>' + user.Password + '</td>';
                     result += '</tr>';
                 }
@@ -224,7 +224,7 @@
                     '<th onclick="sortUserBy(\'UserEmail\');" id="UserEmailTh">UserEmail</th>' +
                     '<th onclick="sortUserBy(\'UserAddress\');" id="UserAddressTh">UserAddress</th>' +
                     '<th onclick="sortUserBy(\'UserTel\');" id="UserTelTh">UserTel</th>' +
-                    '<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
+                    //'<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
                     //   '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
                     '</tr>';
                     result += '<td>' + user.userId + '</td>';
@@ -234,7 +234,7 @@
                     result += '<td>' + user.UserEmail + '</td>';
                     result += '<td>' + user.UserAddress + '</td>';
                     result += '<td>' + user.UserTel + '</td>';
-                    result += '<td>' + user.UserTier + '</td>';
+                    //result += '<td>' + user.UserTier + '</td>';
                     //    result += '<td>' + user.Password + '</td>';
                     result += '</tr>';
 
@@ -378,7 +378,7 @@
                 UserEmail: <input type="text" name="UserEmail"><br>
                 UserAddress: <input type="text" name="UserAddress"><br>
                 UserTel: <input type="text" name="UserTel"><br>
-                UserTier: <input type="text" name="UserTier"><br>
+                <!--UserTier: <input type="text" name="UserTier"><br> -->
                 <!--  Password: <input type="text" name="Password"><br> -->
                 <button id="saveOrAdd">Save or Add</button>
                 <button id="deleteButton">Delete</button>
