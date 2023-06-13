@@ -78,7 +78,7 @@
                     UserEmail: UserEmailVal,
                     UserAddress: UserAddressVal,
                     UserTel: UserTelVal,
-                   // UserTier: UserTierVal,
+                    // UserTier: UserTierVal,
                     //   Password: PasswordVal
                 };
 
@@ -93,7 +93,7 @@
                 }).done(function () {
                     var successMessage = (currId === '') ? "Added successfully" : "Updated successfully";
                     showModalPopup(successMessage);
-                   // $("#viewAddEditPane").hide();
+                    // $("#viewAddEditPane").hide();
                     refreshUserList();
                     searchuserId = $("#searchuserId").val();
                     searchUser(searchuserId);
@@ -112,6 +112,7 @@
             $("#search").click(function () {
                 var searchuserId = $("#searchuserId").val();
                 searchUser(searchuserId);
+                selectUser(searchuserId);
             });
 
             $("#displayAll").click(function () {
@@ -218,15 +219,15 @@
             }).done(function (user) {
                 if (user) {
                     var result = '<tr><th onclick="sortUserBy(\'userId\');" id="userIdTh">userId</th>' +
-                    '<th onclick="sortUserBy(\'Role\');" id="RoleTh">Role</th>' +
-                    '<th onclick="sortUserBy(\'FirstName\');" id="FirstNameTh">FirstName</th>' +
-                    '<th onclick="sortUserBy(\'LastName\');" id="LastNameTh">LastName</th>' +
-                    '<th onclick="sortUserBy(\'UserEmail\');" id="UserEmailTh">UserEmail</th>' +
-                    '<th onclick="sortUserBy(\'UserAddress\');" id="UserAddressTh">UserAddress</th>' +
-                    '<th onclick="sortUserBy(\'UserTel\');" id="UserTelTh">UserTel</th>' +
-                    //'<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
-                    //   '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
-                    '</tr>';
+                        '<th onclick="sortUserBy(\'Role\');" id="RoleTh">Role</th>' +
+                        '<th onclick="sortUserBy(\'FirstName\');" id="FirstNameTh">FirstName</th>' +
+                        '<th onclick="sortUserBy(\'LastName\');" id="LastNameTh">LastName</th>' +
+                        '<th onclick="sortUserBy(\'UserEmail\');" id="UserEmailTh">UserEmail</th>' +
+                        '<th onclick="sortUserBy(\'UserAddress\');" id="UserAddressTh">UserAddress</th>' +
+                        '<th onclick="sortUserBy(\'UserTel\');" id="UserTelTh">UserTel</th>' +
+                        //'<th onclick="sortUserBy(\'UserTier\');" id="UserTierTh">UserTier</th>' +
+                        //   '<th onclick="sortUserBy(\'Password\');" id="PasswordTh">Password</th>' +
+                        '</tr>';
                     result += '<td>' + user.userId + '</td>';
                     result += '<td>' + user.Role + '</td>';
                     result += '<td>' + user.FirstName + '</td>';
@@ -363,7 +364,7 @@
 
         <div id="centerContent">
             <div id="listPane">
-             <!--   <button id="showAddItem"> Show Update Form</button>   -->
+                <!--   <button id="showAddItem"> Show Update Form</button>   -->
                 <button id="displayAll">Display All Users</button>
                 <input type="text" id="searchuserId" placeholder="Search by userId">
                 <button id="search">Search</button>
