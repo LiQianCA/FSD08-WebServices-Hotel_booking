@@ -19,7 +19,6 @@ app.use(express.urlencoded({ extended: true }));
 
 require("./app/routes/users.routes.js")(app);
 require("./app/routes/booking.routes.js")(app);
-require("./app/routes/reserve.routes.js")(app);
 require("./app/routes/rooms.routes.js")(app);
 require("./app/routes/documents.routes.js")(app);
 
